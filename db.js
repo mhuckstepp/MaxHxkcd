@@ -1,5 +1,7 @@
+import { json } from 'express'
 import low from 'lowdb'
 import FileSync from 'lowdb/adapters/FileSync'
+import { runCron } from './lib/scraper'
 import {jsonObjAll } from './lib/seedData'
 
 const adapter = new FileSync('db.json')
@@ -9,12 +11,5 @@ db.defaults({ comics: [
 ]})
 .write()
 
-const deconJsonAll = jsonObjAll
-
-console.log(deconJsonAll)
-
-// db.get('comics')
-//   .push(JSON.stringify(jsonObjAll))
-//   .write()
 
 export default db
