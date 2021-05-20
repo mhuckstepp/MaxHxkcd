@@ -18,6 +18,10 @@ app.get('/api/all', async (req, res, next) => {
 })
 
 
+app.use('/', (req, res, next) => {
+    res.json('welcome to xkcd backend API')
+})
+
 app.listen(2055, () => {
     console.log("running on 2055");
 })
