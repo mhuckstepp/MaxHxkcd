@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import {automateDownloads, getComic, runCron} from './lib/scraper'
+import { getComic } from './lib/scraper'
 import db from './db'
 import './lib/cron'
 

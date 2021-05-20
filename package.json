@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -r esm index.js --ignore db.json"
+    "dev": "nodemon -r esm index.js --ignore db.json",
+    "start": "node -r esm index.js"
   },
   "author": "",
   "license": "ISC",
