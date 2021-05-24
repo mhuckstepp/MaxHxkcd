@@ -2,7 +2,8 @@ const express = require("express");
 const cors = require("cors");
 const { getComic } = require("./lib/scraper");
 const db = require("./db");
-const cron = require("./lib/cron");
+const cron = require("./lib/cron"); //eslint-disable-line
+const scheduled = require('./lib/scheduled-job') //eslint-disable-line
 require("dotenv").config();
 
 const app = express();
