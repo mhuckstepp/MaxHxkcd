@@ -34101,6 +34101,32 @@
       "img": "https://imgs.xkcd.com/comics/dimensional_chess.png",
       "title": "Dimensional Chess",
       "day": "19"
+    },
+    {
+      "month": "5",
+      "num": 2466,
+      "link": "",
+      "year": "2021",
+      "news": "",
+      "safe_title": "In Your Classroom",
+      "transcript": "",
+      "alt": "Ontology is way off to the left and geography is way off to the right.",
+      "img": "https://imgs.xkcd.com/comics/in_your_classroom.png",
+      "title": "In Your Classroom",
+      "day": "21"
+    },
+    {
+      "month": "5",
+      "num": 2467,
+      "link": "",
+      "year": "2021",
+      "news": "",
+      "safe_title": "Wikipedia Caltrops",
+      "transcript": "",
+      "alt": "Oh no, they set up a roadblock which is just a sign with the entire 'Czech hedgehog' article printed on it.",
+      "img": "https://imgs.xkcd.com/comics/wikipedia_caltrops.png",
+      "title": "Wikipedia Caltrops",
+      "day": "24"
     }
   ]
 }

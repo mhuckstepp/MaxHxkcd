@@ -1,11 +1,9 @@
-import low from 'lowdb'
-import FileSync from 'lowdb/adapters/FileSync'
+const low = require("lowdb");
+const FileSync = require("lowdb/adapters/FileSync");
 
-const adapter = new FileSync('db.json')
-const db = low(adapter)
+const adapter = new FileSync("db.json");
+const db = low(adapter);
 
-db.defaults({ comics: [ 
-]})
-.write()
+db.defaults({ comics: [] }).write();
 
-export default db
+module.exports = db;

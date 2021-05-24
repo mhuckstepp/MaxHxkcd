@@ -8,8 +8,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -r esm index.js --ignore db.json",
-    "start": "node -r esm index.js"
+    "dev": "nodemon index.js --ignore db.json",
+    "start": "node index.js",
+    "deploy": "git push heroku main"
   },
   "author": "",
   "license": "ISC",
@@ -17,7 +18,6 @@
     "axios": "^0.21.1",
     "cheerio": "*",
     "cors": "^2.8.5",
-    "esm": "^3.2.25",
     "express": "^4.17.1",
     "lowdb": "^1.0.0",
     "node-cron": "^3.0.0"
