@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Comics from "./components/Comics";
 import FullComic from "./components/FullComic";
@@ -6,10 +6,16 @@ import GetComicByNumForm from "./components/GetComicByNumForm";
 import FilterComics from "./components/FilterComics";
 import useDarkMode from "./hooks/useDarkMode";
 import DarkModeToggle from "react-dark-mode-toggle";
+import { fetchAllComics } from "./actions";
+import { useDispatch } from 'react-redux'
+
 
 function App() {
   const [darkOn, setDarkOn] = useDarkMode();
-
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchAllComics())
+  }, [dispatch])
   return (
     
     <Router>
