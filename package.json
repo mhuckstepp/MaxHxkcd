@@ -10,7 +10,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js --ignore db.json",
     "start": "node index.js",
-    "deploy": "git push heroku main"
+    "heroku-postbuild": "cd client && npm i && npm run build"
   },
   "author": "",
   "license": "ISC",
