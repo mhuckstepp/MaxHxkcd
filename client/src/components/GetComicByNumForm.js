@@ -2,17 +2,15 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
-const GetComicByNumForm = () => {
+const GetComicByNumForm = ({length}) => {
   let history = useHistory();
   const [number, setNumber] = useState("");
   const [error, setError] = useState(false);
 
-  let comicNumEstimate = Math.floor((Date.now() / 86400000 - 18708) / 3);
-
   const changeHandler = (e) => {
     if (
       e.target.value >= 0 &&
-      e.target.value < Math.ceil(2440 + comicNumEstimate)
+      e.target.value < length
     ) {
       setNumber(e.target.value);
       setError(false);
@@ -41,7 +39,7 @@ const GetComicByNumForm = () => {
         {error && (
           <p className="text-red-700 text-md">
             {" "}
-            # Must be 1 - {Math.ceil(2440 + comicNumEstimate)}
+            # Must be 1 - {length}
           </p>
         )}
         <button

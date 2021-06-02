@@ -7,11 +7,12 @@ import FilterComics from "./components/FilterComics";
 import useDarkMode from "./hooks/useDarkMode";
 import DarkModeToggle from "react-dark-mode-toggle";
 import { fetchAllComics } from "./actions";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 function App() {
   const [darkOn, setDarkOn] = useDarkMode();
+  const state = useSelector(state => state)
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(fetchAllComics())
@@ -50,7 +51,7 @@ function App() {
               </h1>
               <div className=" flex flex-col justify-center md:text-xs	">
                 <Route exact path="/" component={FilterComics} />
-                <GetComicByNumForm />
+                <GetComicByNumForm length={state.comics.length}/>
               </div>
             </div>
             <div className="mx-auto  ">
