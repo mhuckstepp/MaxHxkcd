@@ -11,7 +11,7 @@ const FullComic = () => {
   const comics = useSelector((state) => state.comics);
   const [selectComic, setSelectComic] = useState([{}]);
   let history = useHistory();
-  // const [comment, setComment] = useState("");
+  // const [comments, setComments] = useState("");
   // const dispatch = useDispatch();
 
   const handleNext = () => {
@@ -25,6 +25,9 @@ const FullComic = () => {
   useEffect(() => {
     setSelectComic(comics.filter((comic) => Number(comic.num) === num));
   }, [num, comics]);
+  // useEffect(() => {
+  //   setSelectComic(comics.filter((comic) => Number(comic.num) === num));
+  // }, [num, comics]);
 
   const { title, img, alt } = selectComic[0];
 

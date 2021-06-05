@@ -11,7 +11,6 @@ const Comics = () => {
   function fetchMore() {
     dispatch(fetchComics());
   }
-
   return (
     <div>
       <div className="flex flex-col items-center w-4/5 m-auto md:w-full  ">

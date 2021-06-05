@@ -19,7 +19,14 @@ app.get("/api/comic", async (req, res, next) => {
 
 app.get("/api/all", async (req, res, next) => {
   let comics = await db.get("comics").value();
-  res.json(comics);
+  let comments = await db.get("comments").value()
+  res.json({comics, comments});
+});
+
+app.get("/api/comments", async (req, res, next) => {
+  let num = req.body.id
+  let comments = await db.get("comments").find({num}).value()
+  res.json(comments);
 });
 
 app.use("/", (req, res, next) => {
