@@ -10,7 +10,7 @@ const GetComicByNumForm = ({length}) => {
   const changeHandler = (e) => {
     if (
       e.target.value >= 0 &&
-      e.target.value < length
+      e.target.value < length.num
     ) {
       setNumber(e.target.value);
       setError(false);
@@ -21,7 +21,15 @@ const GetComicByNumForm = ({length}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    history.push(`/${number}`);
+    if (
+      number > 0 &&
+      number <= length.num
+    ) {
+      history.push(`/${number}`);
+      setError(false);
+    } else {
+      setError(true);
+    }
   };
 
   return (
@@ -39,15 +47,15 @@ const GetComicByNumForm = ({length}) => {
         {error && (
           <p className="text-red-700 text-md">
             {" "}
-            # Must be 1 - {length}
+            # Must be 1 - {length.num}
           </p>
         )}
-        <button
+       {!error && <button
           class="inline-block px-3 my-2 text-xs font-sm leading-6 text-center text-white uppercase transition bg-gray-300 dark:bg-gray-700 rounded-full shadow ripple waves-light hover:shadow-lg focus:outline-none hover:bg-black"
           type="submit"
         >
           Jump
-        </button>
+        </button>}
       </form>
     </div>
   );

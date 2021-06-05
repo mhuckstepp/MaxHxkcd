@@ -51,7 +51,7 @@ function App() {
               </h1>
               <div className=" flex flex-col justify-center md:text-xs	">
                 <Route exact path="/" component={FilterComics} />
-                <GetComicByNumForm length={state.comics.length}/>
+                <GetComicByNumForm length={state.comics[state.comics.length - 1]}/>
               </div>
             </div>
             <div className="mx-auto  ">
