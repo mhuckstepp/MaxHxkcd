@@ -47,7 +47,7 @@ const GetComicByNumForm = ({length}) => {
         {error && (
           <p className="text-red-700 text-md">
             {" "}
-            # Must be 1 - {length.num}
+            # Must be 1 - {length.num + 1}
           </p>
         )}
        {!error && <button

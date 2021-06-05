@@ -29,7 +29,7 @@ app.get("/api/comments/:num", async (req, res, next) => {
 });
 
 app.use("/", (req, res, next) => {
-  res.json("welcome to xkcd backend API");
+  res.json("Sorry - we broke something.");
 });
 
 app.listen(port, () => {
