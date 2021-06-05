@@ -17,7 +17,8 @@
     "databaseh": "heroku pg:psql -a maxhxkcd",
     "seedh": "heroku run knex seed:run -a maxhxkcd",
     "test": "cross-env NODE_ENV=testing jest --watchAll --verbose --runInBand",
-    "deploy": "git push heroku main"
+    "deploy": "git push heroku main",
+    "heroku-postbuild": "cd client && npm i && npm run build"
   },
   "author": "",
   "license": "ISC",
