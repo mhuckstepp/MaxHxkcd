@@ -10,7 +10,7 @@ const GetComicByNumForm = ({length}) => {
   const changeHandler = (e) => {
     if (
       e.target.value >= 0 &&
-      e.target.value < length.num
+      e.target.value <= length.num
     ) {
       setNumber(e.target.value);
       setError(false);
