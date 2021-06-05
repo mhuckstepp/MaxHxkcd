@@ -26,7 +26,7 @@ export const comicReducer = (state = initialState, action) => {
     case FETCH_ALL_SUCCESS:
       return {
         ...state,
-        comics: action.payload.comics,
+        comics: action.payload,
         isLoading: false,
       }
       case FETCH_SUCCESS:
