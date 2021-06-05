@@ -66,10 +66,11 @@ const FullComic = () => {
         <img className=" max-h-screen" src={img} alt={alt} />
         <p className="text-2xl mt-12 w-7/12 md:mt-4 md:text-sm">{alt}</p>
         <p className="text-lg my-4 md:text-base"># {num}</p>
-
+        <p>Comments</p>
         {comments.length &&
           comments.map((comment) => (
-            <div class="media">{comment.poster} - {comment.comment} </div>
+            <div class="media">
+            {comment.poster} - {comment.comment} </div>
           ))}
         <div
           style={{
