@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Comics from "./components/Comics";
-import FullComic from "./components/FullComic";
+import FullComic from "./components/FullComicPage/FullComic";
 import GetComicByNumForm from "./components/GetComicByNumForm";
 import FilterComics from "./components/FilterComics";
 import useDarkMode from "./hooks/useDarkMode";

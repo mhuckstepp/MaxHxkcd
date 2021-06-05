@@ -2,8 +2,8 @@ import React from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-// import { addComment } from "../actions";
-// import axios from "axios";
+import axios from "axios";
+import {url, } from './FullComicActions'
 
 const FullComic = () => {
   let { num } = useParams();
@@ -11,8 +11,7 @@ const FullComic = () => {
   const comics = useSelector((state) => state.comics);
   const [selectComic, setSelectComic] = useState([{}]);
   let history = useHistory();
-  // const [comments, setComments] = useState("");
-  // const dispatch = useDispatch();
+  const [comments, setComments] = useState({});
 
   const handleNext = () => {
     history.push(`/${num + 1}`);
@@ -23,14 +22,29 @@ const FullComic = () => {
   };
 
   useEffect(() => {
+    if (comics.length){
     setSelectComic(comics.filter((comic) => Number(comic.num) === num));
+    }
+    else {
+      axios
+      .get(url(`/api/comic/${num}`))
+      .then((res) => {
+        setSelectComic([res.data])
+      })
+    }
   }, [num, comics]);
-  // useEffect(() => {
-  //   setSelectComic(comics.filter((comic) => Number(comic.num) === num));
-  // }, [num, comics]);
+  
+
+  
+  useEffect(() => {
+    axios
+      .get(url(`/api/comments/${num}`))
+      .then((res) => {
+        setComments(res.data)
+      })
+  }, [num])
 
   const { title, img, alt } = selectComic[0];
-
   return (
     <div>
       <div className="flex flex-col items-center text-center">
@@ -53,9 +67,9 @@ const FullComic = () => {
         <p className="text-2xl mt-12 w-7/12 md:mt-4 md:text-sm">{alt}</p>
         <p className="text-lg my-4 md:text-base"># {num}</p>
 
-        {/* {selectComic.comments &&
-          selectComic.comments.map((comment) => (
-            <div class="media"> {comment} </div>
+        {comments.length &&
+          comments.map((comment) => (
+            <div class="media">{comment.poster} - {comment.comment} </div>
           ))}
         <div
           style={{
@@ -66,7 +80,7 @@ const FullComic = () => {
           }}
           class="columns"
         >
-          <textarea
+          {/* <textarea
             class="textarea is-small"
             style={{
               width: "30%",
@@ -91,8 +105,8 @@ const FullComic = () => {
             onClick={() => handleSubmit(comment, num)}
           >
             Add your own caption!
-          </button>
-        </div> */}
+          </button> */}
+        </div>
       </div>
     </div>
   );

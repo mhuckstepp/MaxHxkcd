@@ -6,6 +6,7 @@ export const FETCH_START = "FETCH_START";
 export const ADD_COMMENT = "ADD_COMMENT";
 export const SEARCH_COMICS = "SEARCH_COMICS";
 export const FETCH_ALL_SUCCESS = "FETCH_ALL_SUCCESS";
+export const FETCH_COMMENTS = "FETCH_COMMENTS";
 
 function url(path) {
   return process.env.NODE_ENV === "development"
@@ -30,7 +31,6 @@ export const fetchAllComics = () => {
       })
   }
 }
-
 
 
 export const fetchComics = () => {

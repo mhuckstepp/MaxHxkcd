@@ -12,8 +12,9 @@ app.use(express.static(path.join(__dirname, "client/build")));
 
 const port = process.env.PORT;
 
-app.get("/api/comic", async (req, res, next) => {
-  let comic = await getComic("http://xkcd.com/info.0.json");
+app.get("/api/comic/:num", async (req, res, next) => {
+  let comicNum = Number(req.params.num)
+  let comic = await db.get("comics").find({num: comicNum}).value();
   res.status(200).json(comic);
 });
 
@@ -23,9 +24,9 @@ app.get("/api/all", async (req, res, next) => {
   res.json({comics, comments});
 });
 
-app.get("/api/comments", async (req, res, next) => {
-  let num = req.body.id
-  let comments = await db.get("comments").find({num}).value()
+app.get("/api/comments/:num", async (req, res, next) => {
+  let comicNum = Number(req.params.num)
+  let comments = await db.get("comments").filter({num: comicNum}).value()
   res.json(comments);
 });
 
