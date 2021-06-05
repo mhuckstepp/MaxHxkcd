@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { getComic } = require("./lib/scraper");
-const db = require("./db");
+const db = require("./db-config");
 require("dotenv").config();
 const path = require("path");
 
@@ -14,19 +13,18 @@ const port = process.env.PORT;
 
 app.get("/api/comic/:num", async (req, res, next) => {
   let comicNum = Number(req.params.num)
-  let comic = await db.get("comics").find({num: comicNum}).value();
+  let comic = await db("comics").where({num: comicNum});
   res.status(200).json(comic);
 });
 
 app.get("/api/all", async (req, res, next) => {
-  let comics = await db.get("comics").value();
-  let comments = await db.get("comments").value()
-  res.json({comics, comments});
+  let comics = await db("comics");
+  res.json(comics);
 });
 
 app.get("/api/comments/:num", async (req, res, next) => {
   let comicNum = Number(req.params.num)
-  let comments = await db.get("comments").filter({num: comicNum}).value()
+  let comments = await db("comments").where({num: comicNum})
   res.json(comments);
 });
 

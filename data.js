@@ -1,5 +1,4 @@
-{
-  "comics": [
+const comics = [
     {
       "month": "1",
       "num": 1,
@@ -323,19 +322,6 @@
       "alt": ":(",
       "img": "https://imgs.xkcd.com/comics/barrel_part_4.jpg",
       "title": "Barrel - Part 4",
-      "day": "1"
-    },
-    {
-      "month": "1",
-      "num": 26,
-      "link": "",
-      "year": "2006",
-      "news": "",
-      "safe_title": "Fourier",
-      "transcript": "[[ Person talks on phone.  Cat with many sharp points looks on. ]]\nPerson on phone: Hi, Dr. Elizabeth?  Yeah, uh ... I accidentally took the Fourier transform of my cat ...\nCat: Meow!\n{{alt-text: That cat has some serious periodic components}}",
-      "alt": "That cat has some serious periodic components",
-      "img": "https://imgs.xkcd.com/comics/fourier.jpg",
-      "title": "Fourier",
       "day": "1"
     },
     {
@@ -34180,8 +34166,9 @@
       "title": "Fuzzy Blob",
       "day": "4"
     }
-  ],
-  "comments": [
+  ]
+
+const comments = [
     {
       "poster": "Jimmy",
       "comment": "there should be an abbreviation or keyword for next slide please",
@@ -34197,4 +34184,8 @@
       "num": 2469
     }
   ]
-}
+
+  module.exports = {
+    comments,
+    comics
+  }
