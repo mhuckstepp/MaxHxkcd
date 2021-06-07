@@ -13,6 +13,19 @@ const FullComic = () => {
   let history = useHistory();
   const [comments, setComments] = useState({});
 
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []); //eslint-disable-line
+
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 27) {
+      history.goBack()
+    }
+  };
+
   const handleNext = () => {
     history.push(`/${num + 1}`);
   };
@@ -72,42 +85,6 @@ const FullComic = () => {
             <div class="media">
             {comment.poster} - {comment.comment} </div>
           ))}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            width: "30%",
-          }}
-          class="columns"
-        >
-          {/* <textarea
-            class="textarea is-small"
-            style={{
-              width: "30%",
-              margin: "30px auto 10px",
-              textAlign: "center",
-            }}
-            name="comment"
-            placeholder="add your own caption"
-            type="text"
-            onChange={handleChange}
-            value={comment}
-          ></textarea>
-
-          <button
-            class="button is-small is-info"
-            style={{
-              width: "40%",
-              padding: "2%",
-              margin: "10px",
-            }}
-            type="submit"
-            onClick={() => handleSubmit(comment, num)}
-          >
-            Add your own caption!
-          </button> */}
-        </div>
       </div>
     </div>
   );
