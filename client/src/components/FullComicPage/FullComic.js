@@ -35,17 +35,20 @@ const FullComic = () => {
   };
 
   useEffect(() => {
-    if (comics.length){
-    setSelectComic(comics.filter((comic) => Number(comic.num) === num));
-    }
-    else {
-      axios
-      .get(url(`/api/comic/${num}`))
-      .then((res) => {
-        setSelectComic([res.data])
-      })
-    }
-  }, [num, comics]);
+      if(comics.length) {
+      const comic = comics.filter((comic) => Number(comic.num) === num)
+        if(comic) {
+          setSelectComic(comic);
+        }
+        else {
+         axios
+          .get(url(`/api/comic/${num}`))
+          .then((res) => {
+          setSelectComic([res.data])
+          }).catch(err => console.log(err))
+        }
+      }
+  }, [num, comics]); //eslint-disable-line
   
 
   
@@ -57,6 +60,32 @@ const FullComic = () => {
       })
   }, [num])
 
+  
+  
+  if (!selectComic[0]){
+    return (
+      <>
+      <div>
+      Sorry we couldn't find a comic with that number. Try again. 
+      </div>
+      <div className="flex mt-8 mb-5">
+          <button
+            className="bg-gradient-to-r mr-12 p-2 from-blue-300 rounded font-bold"
+            onClick={() => handleLast()}
+          >
+            Previous
+          </button>
+          <button
+            className="bg-gradient-to-l ml-10 p-4 pl-10 from-blue-300 rounded font-bold"
+            onClick={() => handleNext()}
+          >
+            Next
+          </button>
+        </div>
+        </>
+    )
+  }
+  
   const { title, img, alt } = selectComic[0];
   return (
     <div>

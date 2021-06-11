@@ -34154,6 +34154,19 @@ const comics = [
       "day": "31"
     },
     {
+      "month": '6',
+      "num": 2471,
+      "link": '',
+      "year": '2021',
+      "news": '',
+      "safe_title": 'Hippo Attacks',
+      "transcript": '',
+      "alt": "It's cool how, when there's a number lots of people are curious about, but which isn't easy to measure, some random guess will get cited everywhere and become the universally quoted value. Unrelatedly, did you know there are 850 trillion waves in the ocean?",
+      "img": 'https://imgs.xkcd.com/comics/hippo_attacks.png',
+      "title": 'Hippo Attacks',
+      "day": '2'
+    },
+    {
       "month": "6",
       "num": 2472,
       "link": "",
@@ -34165,6 +34178,32 @@ const comics = [
       "img": "https://imgs.xkcd.com/comics/fuzzy_blob.png",
       "title": "Fuzzy Blob",
       "day": "4"
+    },
+    {
+      "month": '6',
+      "num": 2473,
+      "link": '',
+      "year": '2021',
+      "news": '',
+      "safe_title": 'Product Launch',
+      "transcript": '',
+      "alt": '"Okay, that was weird, but the product reveal was normal. I think the danger is pas--" "One more thing." "Oh no."',
+      "img": 'https://imgs.xkcd.com/comics/product_launch.png',
+      "title": 'Product Launch',
+      "day": '7'
+    },
+    {
+      "month": "6",
+      "num": 2474,
+      "link": "",
+      "year": "2021",
+      "news": "",
+      "safe_title": "First Time Since Early 2020",
+      "transcript": "",
+      "alt": "Gotten the Ferris wheel operator's attention",
+      "img": "https://imgs.xkcd.com/comics/first_time_since_early_2020.png",
+      "title": "First Time Since Early 2020",
+      "day": "9"
     }
   ]
 
