@@ -28,6 +28,15 @@ app.get("/api/comments/:num", async (req, res, next) => {
   res.json(comments);
 });
 
+app.post("/api/comic", async (req, res, next) => {
+  let comic = req.body
+  console.log(comic);
+  let insert = await db("comics").insert(comic).then(response => {
+    console.log(response);
+  }).catch(err => console.log(err))
+  res.json(comic);
+});
+
 app.use("/", (req, res, next) => {
   res.json("Sorry - we broke something.");
 });
