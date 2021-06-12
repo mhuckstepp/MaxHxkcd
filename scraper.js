@@ -1,5 +1,5 @@
 const axios = require('axios')
-const db = require('../db-config')
+const db = require('./db-config')
 
 async function getComic(url) {
     const {data} = await axios.get(url);
@@ -19,17 +19,19 @@ async function getLatest() {
     }
 }
 
-async function automateDownloads(count) {
-    const newArr = []
-    for (let i = 0; i <= 1; i++){
-        let comic = await getComic(`http://xkcd.com/${count + i}/info.0.json`)
-        newArr.push(comic)
-    }
-    newArr.forEach(comic => {
-        db('comics')
-        .insert(comic)
-        })
-}
+getLatest()
+
+// async function automateDownloads(count) {
+//     const newArr = []
+//     for (let i = 0; i <= 1; i++){
+//         let comic = await getComic(`http://xkcd.com/${count + i}/info.0.json`)
+//         newArr.push(comic)
+//     }
+//     newArr.forEach(comic => {
+//         db('comics')
+//         .insert(comic)
+//         })
+// }
 
 module.exports = 
-{ getComic, getLatest, automateDownloads }
+{ getComic, getLatest }
