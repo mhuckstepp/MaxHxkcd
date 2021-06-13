@@ -7,11 +7,9 @@ async function getComic(url) {
 }
 
 async function getLatest() {
-    let comic = await getComic('http://xkcd.com/info.0.json')
-    let checkLast = await db('comics').where({num: comic.num})
-    console.log('comic!', comic,'checklast!', checkLast)
-    const time = new Date()
-    console.log(time.toString())
+    // let comic = await getComic('http://xkcd.com/info.0.json')
+    let checkLast = await db('comics').where({num: 2469})
+    console.log('checklast!', checkLast)
     if (!checkLast.length) {
     db('comics').insert(comic).then(res => {
         console.log(res)
