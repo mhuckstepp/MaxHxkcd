@@ -22,7 +22,7 @@ app.get("/api/comic/:num", async (req, res, next) => {
 });
 
 app.get("/api/all", async (req, res, next) => {
-  let comics = await db("comics");
+  let comics = await db("comics").orderBy('num', 'asc');
   res.json(comics);
 });
 
