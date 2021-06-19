@@ -47,6 +47,13 @@ const FullComic = () => {
           })
           .catch((err) => console.log(err));
       }
+    } else {
+      axios
+        .get(url(`/api/comic/${num}`))
+        .then((res) => {
+          setSelectComic([res.data]);
+        })
+        .catch((err) => console.log(err));
     }
   }, [num, comics]); //eslint-disable-line
 
