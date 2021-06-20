@@ -18,7 +18,6 @@ function App() {
     dispatch(fetchAllComics());
   }, [dispatch]);
 
-  console.log(location);
   return (
     <Switch>
       <div className={darkOn ? "container  dark" : "container "}>

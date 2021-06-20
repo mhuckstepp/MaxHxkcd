@@ -21,19 +21,20 @@ const port = process.env.PORT;
 
 app.get("/api/comic/:num", async (req, res, next) => {
   let comicNum = Number(req.params.num);
-  let comic = await db("comics").where({ num: comicNum });
-  res.status(200).json(comic);
-});
-
-app.get("/api/all", async (req, res, next) => {
-  let comics = await db("comics").orderBy("num", "asc");
-  res.json(comics);
+  let [comic] = await db("comics").where({ num: comicNum });
+  let comments = await db("comments").where({ num: comicNum });
+  res.status(200).json({ ...comic, comments: comments });
 });
 
 app.get("/api/comments/:num", async (req, res, next) => {
   let comicNum = Number(req.params.num);
   let comments = await db("comments").where({ num: comicNum });
   res.json(comments);
+});
+
+app.get("/api/all", async (req, res, next) => {
+  let comics = await db("comics").orderBy("num", "asc");
+  res.json(comics);
 });
 
 app.post("/api/comic", async (req, res, next) => {

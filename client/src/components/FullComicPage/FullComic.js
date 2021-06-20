@@ -8,10 +8,12 @@ import { url } from "./FullComicActions";
 const FullComic = () => {
   let { num } = useParams();
   num = Number(num);
+  let history = useHistory();
   const comics = useSelector((state) => state.comics);
   const [selectComic, setSelectComic] = useState([{}]);
-  let history = useHistory();
-  const [comments, setComments] = useState({});
+  const [comments, setComments] = useState([]);
+
+  console.log(comments);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -35,33 +37,15 @@ const FullComic = () => {
   };
 
   useEffect(() => {
-    if (comics.length) {
-      const comic = comics.filter((comic) => Number(comic.num) === num);
-      if (comic) {
-        setSelectComic(comic);
-      } else {
-        axios
-          .get(url(`/api/comic/${num}`))
-          .then((res) => {
-            setSelectComic([res.data]);
-          })
-          .catch((err) => console.log(err));
-      }
-    } else {
-      axios
-        .get(url(`/api/comic/${num}`))
-        .then((res) => {
-          setSelectComic([res.data]);
-        })
-        .catch((err) => console.log(err));
-    }
+    axios
+      .get(url(`/api/comic/${num}`))
+      .then((comic) => {
+        setSelectComic([comic.data]);
+        console.log(comic.data);
+        setComments(comic.data.comments);
+      })
+      .catch((err) => console.log(err));
   }, [num, comics]); //eslint-disable-line
-
-  useEffect(() => {
-    axios.get(url(`/api/comments/${num}`)).then((res) => {
-      setComments(res.data);
-    });
-  }, [num]);
 
   if (!selectComic[0]) {
     return (
@@ -109,8 +93,8 @@ const FullComic = () => {
         <img className=" max-h-screen" src={img} alt={alt} />
         <p className="text-2xl mt-12 w-7/12 md:mt-4 md:text-sm">{alt}</p>
         <p className="text-lg my-4 md:text-base"># {num}</p>
-        {comments[0] && <p>Comments</p>}
-        {comments[0] &&
+        {comments && <p>Comments</p>}
+        {comments &&
           comments.map((comment) => (
             <div class="media">
               {comment.poster} - {comment.comment}{" "}
