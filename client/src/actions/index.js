@@ -7,6 +7,9 @@ export const ADD_COMMENT = "ADD_COMMENT";
 export const SEARCH_COMICS = "SEARCH_COMICS";
 export const FETCH_ALL_SUCCESS = "FETCH_ALL_SUCCESS";
 export const FETCH_COMMENTS = "FETCH_COMMENTS";
+export const SORT_COMICS = "SORT_COMICS";
+export const SORT_COMICS_RECENT = "SORT_COMICS_OLDEST";
+export const SORT_COMICS_OLDEST = "SORT_COMICS_NEWEST";
 
 function url(path) {
   return process.env.NODE_ENV === "development"
@@ -18,20 +21,19 @@ export const fetchAllComics = () => {
   return (dispatch) => {
     dispatch({ type: FETCH_START });
     axios
-      .get(url('/api/all'))
+      .get(url("/api/all"))
       .then((res) => {
         dispatch({
           type: FETCH_ALL_SUCCESS,
-          payload: res.data
-          })
-          dispatch({ type: FETCH_SUCCESS })
+          payload: res.data,
+        });
+        dispatch({ type: FETCH_SUCCESS });
       })
       .catch((err) => {
         dispatch({ type: FETCH_FAIL, payload: err });
-      })
-  }
-}
-
+      });
+  };
+};
 
 export const fetchComics = () => {
   return { type: FETCH_SUCCESS };
@@ -43,4 +45,12 @@ export const addComment = (comment, num) => {
 
 export const searchComics = (search) => {
   return { type: SEARCH_COMICS, payload: search.toLowerCase() };
+};
+
+export const sortByRecent = () => {
+  return { type: SORT_COMICS_RECENT };
+};
+
+export const sortByNewest = () => {
+  return { type: SORT_COMICS_OLDEST };
 };

@@ -100,7 +100,7 @@ const FullComic = () => {
         <p className="text-l">Favorites: {favorites}</p>
         {!favorited && (
           <button
-            class="m-5 bg-red-300 hover:bg-red-200 text-white font-bold py-1 px-2 rounded"
+            class="m-5 bg-red-400 hover:bg-red-500 text-white font-bold py-1 px-2 rounded"
             type="submit"
             onClick={() => addFavorite(num)}
           >

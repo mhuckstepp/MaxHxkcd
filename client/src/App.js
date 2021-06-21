@@ -8,6 +8,7 @@ import useDarkMode from "./hooks/useDarkMode";
 import DarkModeToggle from "react-dark-mode-toggle";
 import { fetchAllComics } from "./actions";
 import { useDispatch, useSelector } from "react-redux";
+import SortComics from "./components/SortComics";
 
 function App() {
   const [darkOn, setDarkOn] = useDarkMode();
@@ -45,6 +46,7 @@ function App() {
                   checked={darkOn}
                   size={40}
                 />
+                <SortComics />
               </div>
             </div>
             <h1 className="text-8xl lg:text-6xl md:text-4xl self-center  ml-24 lg:m-0  ">

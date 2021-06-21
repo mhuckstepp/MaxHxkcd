@@ -5,15 +5,16 @@ import {
   ADD_COMMENT,
   SEARCH_COMICS,
   FETCH_ALL_SUCCESS,
+  SORT_COMICS,
+  SORT_COMICS_OLDEST,
+  SORT_COMICS_RECENT,
 } from "../actions";
-
 
 const initialState = {
   comics: {},
   isFetching: false,
   err: "",
-  showedComics: [
-  ],
+  showedComics: [],
 };
 
 export const comicReducer = (state = initialState, action) => {
@@ -28,8 +29,8 @@ export const comicReducer = (state = initialState, action) => {
         ...state,
         comics: action.payload,
         isLoading: false,
-      }
-      case FETCH_SUCCESS:
+      };
+    case FETCH_SUCCESS:
       let randOne = Math.ceil(Math.random() * state.comics.length);
       let randTwo = Math.ceil(Math.random() * state.comics.length);
       let randThree = Math.ceil(Math.random() * state.comics.length);
@@ -57,6 +58,18 @@ export const comicReducer = (state = initialState, action) => {
         showedComics: state.comics.filter((comic) => {
           return comic.title.toLowerCase().includes(action.payload);
         }),
+      };
+    case SORT_COMICS_OLDEST:
+      state.comics.sort();
+      return {
+        ...state,
+        showedComics: state.comics.slice(0, 50),
+      };
+    case SORT_COMICS_RECENT:
+      state.comics.sort();
+      return {
+        ...state,
+        showedComics: state.comics.slice(-50).reverse(),
       };
     case ADD_COMMENT:
       return {
