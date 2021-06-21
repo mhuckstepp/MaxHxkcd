@@ -1,5 +1,8 @@
 {
     "cSpell.words": [
         "formik"
+    ],
+    "cSpell.ignoreWords": [
+        "favorited"
     ]
 }

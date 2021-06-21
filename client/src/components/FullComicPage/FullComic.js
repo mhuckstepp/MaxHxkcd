@@ -2,7 +2,7 @@ import React from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { url } from "./FullComicActions";
+import { url, pushFavorite } from "./FullComicActions";
 import Comments from "./Comments";
 
 const FullComic = () => {
@@ -11,8 +11,7 @@ const FullComic = () => {
   let history = useHistory();
   const [selectComic, setSelectComic] = useState([{}]);
   const [comments, setComments] = useState([]);
-
-  console.log(comments);
+  const [favorited, setFavorited] = useState(false);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -33,6 +32,12 @@ const FullComic = () => {
 
   const handleLast = () => {
     history.push(`/${num - 1}`);
+  };
+
+  const addFavorite = () => {
+    pushFavorite(num);
+    setFavorited(true);
+    selectComic[0].favorites += 1;
   };
 
   useEffect(() => {
@@ -70,7 +75,7 @@ const FullComic = () => {
     );
   }
 
-  const { title, img, alt } = selectComic[0];
+  let { title, img, alt, favorites } = selectComic[0];
   return (
     <div>
       <div className="flex flex-col items-center text-center">
@@ -92,6 +97,16 @@ const FullComic = () => {
         <img className=" max-h-screen" src={img} alt={alt} />
         <p className="text-2xl mt-12 w-7/12 md:mt-4 md:text-sm">{alt}</p>
         <p className="text-lg my-4 md:text-base"># {num}</p>
+        <p className="text-l">Favorites: {favorites}</p>
+        {!favorited && (
+          <button
+            class="m-5 bg-red-300 hover:bg-red-200 text-white font-bold py-1 px-2 rounded"
+            type="submit"
+            onClick={() => addFavorite(num)}
+          >
+            Favorite
+          </button>
+        )}
         <Comments comments={comments} setComments={setComments} num={num} />
       </div>
     </div>

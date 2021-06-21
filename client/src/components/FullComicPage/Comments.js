@@ -49,7 +49,7 @@ const Comments = ({ comments, setComments, num }) => {
       {comments && <p class="font-bold">Comments:</p>}
       {comments &&
         comments.map((comment) => (
-          <div class="media">
+          <div key={comment.comment_id} class="media">
             {comment.poster} - {comment.comment}{" "}
           </div>
         ))}

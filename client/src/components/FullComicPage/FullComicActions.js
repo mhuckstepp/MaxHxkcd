@@ -17,7 +17,18 @@ export const postComment = (comment) => {
 
 export const deleteComment = (commentId) => {
   axios
-    .delete(url(`/api/comment${commentId}`))
+    .delete(url(`/api/comment/${commentId}`))
+    .then((resp) => {
+      console.log(resp);
+    })
+    .catch((err) => console.log(err));
+};
+
+export const pushFavorite = (num) => {
+  axios
+    .put(url(`/api/comic/${num}`), {
+      favorites: 1,
+    })
     .then((resp) => {
       console.log(resp);
     })

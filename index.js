@@ -39,7 +39,6 @@ app.get("/api/all", async (req, res, next) => {
 
 app.post("/api/comic", async (req, res, next) => {
   let comic = req.body;
-  console.log(comic);
   let insert = await db("comics")
     .insert(comic)
     .then((response) => {
@@ -51,7 +50,6 @@ app.post("/api/comic", async (req, res, next) => {
 
 app.post("/api/comment", async (req, res, next) => {
   let comment = req.body;
-  console.log(comment);
   await db("comments")
     .insert(comment)
     .then((response) => {
@@ -59,6 +57,21 @@ app.post("/api/comment", async (req, res, next) => {
     })
     .catch((err) => console.log(err));
   res.status(200).json(comment);
+});
+
+app.put("/api/comic/:num", async (req, res, next) => {
+  const num = req.params.num;
+  const [favoritesNum] = await db("comics")
+    .select("comics.favorites")
+    .where({ num });
+  await db("comics")
+    .update({ favorites: favoritesNum.favorites + 1 })
+    .where({ num })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => console.log(err));
+  res.status(200).json(favoritesNum + 1);
 });
 
 app.use("/", (req, res, next) => {
