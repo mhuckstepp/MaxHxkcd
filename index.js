@@ -49,6 +49,18 @@ app.post("/api/comic", async (req, res, next) => {
   res.json(comic);
 });
 
+app.post("/api/comment", async (req, res, next) => {
+  let comment = req.body;
+  console.log(comment);
+  await db("comments")
+    .insert(comment)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => console.log(err));
+  res.status(200).json(comment);
+});
+
 app.use("/", (req, res, next) => {
   res.json("Sorry - we broke something.");
 });

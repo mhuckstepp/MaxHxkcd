@@ -1,15 +1,14 @@
 import React from "react";
 import { useParams, useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { url } from "./FullComicActions";
+import Comments from "./Comments";
 
 const FullComic = () => {
   let { num } = useParams();
   num = Number(num);
   let history = useHistory();
-  const comics = useSelector((state) => state.comics);
   const [selectComic, setSelectComic] = useState([{}]);
   const [comments, setComments] = useState([]);
 
@@ -45,7 +44,7 @@ const FullComic = () => {
         setComments(comic.data.comments);
       })
       .catch((err) => console.log(err));
-  }, [num, comics]); //eslint-disable-line
+  }, [num]); //eslint-disable-line
 
   if (!selectComic[0]) {
     return (
@@ -93,13 +92,7 @@ const FullComic = () => {
         <img className=" max-h-screen" src={img} alt={alt} />
         <p className="text-2xl mt-12 w-7/12 md:mt-4 md:text-sm">{alt}</p>
         <p className="text-lg my-4 md:text-base"># {num}</p>
-        {comments && <p>Comments</p>}
-        {comments &&
-          comments.map((comment) => (
-            <div class="media">
-              {comment.poster} - {comment.comment}{" "}
-            </div>
-          ))}
+        <Comments comments={comments} setComments={setComments} num={num} />
       </div>
     </div>
   );
