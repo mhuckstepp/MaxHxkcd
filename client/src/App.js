@@ -46,7 +46,7 @@ function App() {
                   checked={darkOn}
                   size={40}
                 />
-                <SortComics />
+                <Route exact path="/" component={SortComics} />
               </div>
             </div>
             <h1 className="text-8xl lg:text-6xl md:text-4xl self-center  ml-24 lg:m-0  ">

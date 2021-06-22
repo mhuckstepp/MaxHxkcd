@@ -63,13 +63,13 @@ export const comicReducer = (state = initialState, action) => {
       state.comics.sort();
       return {
         ...state,
-        showedComics: state.comics.slice(0, 50),
+        showedComics: state.comics.slice(0, 100),
       };
     case SORT_COMICS_RECENT:
       state.comics.sort();
       return {
         ...state,
-        showedComics: state.comics.slice(-50).reverse(),
+        showedComics: state.comics.slice(-100).reverse(),
       };
     case ADD_COMMENT:
       return {
