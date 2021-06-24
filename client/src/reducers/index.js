@@ -5,13 +5,14 @@ import {
   ADD_COMMENT,
   SEARCH_COMICS,
   FETCH_ALL_SUCCESS,
-  SORT_COMICS,
-  SORT_COMICS_OLDEST,
   SORT_COMICS_RECENT,
+  SORT_COMICS_RANDOM,
+  SORT_COMICS_FAVORITES,
 } from "../actions";
+import { fourRandos } from "../utils/ReduxFuncs";
 
 const initialState = {
-  comics: {},
+  comics: [],
   isFetching: false,
   err: "",
   showedComics: [],
@@ -31,19 +32,10 @@ export const comicReducer = (state = initialState, action) => {
         isLoading: false,
       };
     case FETCH_SUCCESS:
-      let randOne = Math.ceil(Math.random() * state.comics.length);
-      let randTwo = Math.ceil(Math.random() * state.comics.length);
-      let randThree = Math.ceil(Math.random() * state.comics.length);
-      let randFour = Math.ceil(Math.random() * state.comics.length);
-      let res = [
-        state.comics[randOne],
-        state.comics[randTwo],
-        state.comics[randThree],
-        state.comics[randFour],
-      ];
+      const randComics = fourRandos(state.comics);
       return {
         ...state,
-        showedComics: [...state.showedComics, ...res],
+        showedComics: [...state.showedComics, ...randComics],
         error: "",
       };
     case FETCH_FAIL:
@@ -53,23 +45,35 @@ export const comicReducer = (state = initialState, action) => {
         error: action.payload,
       };
     case SEARCH_COMICS:
+      const filtered = state.comics.filter((comic) => {
+        return comic.title.toLowerCase().includes(action.payload);
+      });
+      const snapshot = filtered.slice(0, 50);
       return {
         ...state,
-        showedComics: state.comics.filter((comic) => {
-          return comic.title.toLowerCase().includes(action.payload);
-        }),
-      };
-    case SORT_COMICS_OLDEST:
-      state.comics.sort();
-      return {
-        ...state,
-        showedComics: state.comics.slice(0, 100),
+        showedComics: snapshot,
       };
     case SORT_COMICS_RECENT:
-      state.comics.sort();
+      let sorted = state.comics.sort();
+      sorted.reverse();
       return {
         ...state,
-        showedComics: state.comics.slice(-100).reverse(),
+        showedComics: sorted.slice(0, 75),
+      };
+    case SORT_COMICS_RANDOM:
+      const sortRandRes = fourRandos(state.comics);
+      return {
+        ...state,
+        showedComics: sortRandRes,
+      };
+    case SORT_COMICS_FAVORITES:
+      let sortFav = state.comics.sort((a, b) =>
+        a.favorites < b.favorites ? 1 : -1
+      );
+      console.log(sortFav[0], sortFav[sortFav.length - 1]);
+      return {
+        ...state,
+        showedComics: sortFav.slice(0, 10),
       };
     case ADD_COMMENT:
       return {

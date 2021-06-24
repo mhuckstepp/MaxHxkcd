@@ -7,9 +7,9 @@ export const ADD_COMMENT = "ADD_COMMENT";
 export const SEARCH_COMICS = "SEARCH_COMICS";
 export const FETCH_ALL_SUCCESS = "FETCH_ALL_SUCCESS";
 export const FETCH_COMMENTS = "FETCH_COMMENTS";
-export const SORT_COMICS = "SORT_COMICS";
-export const SORT_COMICS_RECENT = "SORT_COMICS_OLDEST";
-export const SORT_COMICS_OLDEST = "SORT_COMICS_NEWEST";
+export const SORT_COMICS_RECENT = "SORT_COMICS_RECENT";
+export const SORT_COMICS_FAVORITES = "SORT_COMICS_FAVORITES";
+export const SORT_COMICS_RANDOM = "SORT_COMICS_RANDOM";
 
 function url(path) {
   return process.env.NODE_ENV === "development"
@@ -51,6 +51,10 @@ export const sortByRecent = () => {
   return { type: SORT_COMICS_RECENT };
 };
 
-export const sortByNewest = () => {
-  return { type: SORT_COMICS_OLDEST };
+export const sortByFavorites = () => {
+  return { type: SORT_COMICS_FAVORITES };
+};
+
+export const sortByRandom = () => {
+  return { type: SORT_COMICS_RANDOM };
 };

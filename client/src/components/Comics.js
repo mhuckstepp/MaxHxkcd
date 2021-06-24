@@ -24,7 +24,11 @@ const Comics = () => {
           loader={<h4>...</h4>}
         >
           {state.showedComics.map((comic) => {
-            return <Comic comic={comic} key={comic.num} />;
+            if (comic) {
+              return <Comic comic={comic} key={comic.num} />;
+            } else {
+              return null;
+            }
           })}
         </InfiniteScroll>
       </div>
