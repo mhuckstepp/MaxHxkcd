@@ -68,9 +68,8 @@ export const comicReducer = (state = initialState, action) => {
       };
     case SORT_COMICS_FAVORITES:
       let sortFav = state.comics.sort((a, b) =>
-        a.favorites < b.favorites ? 1 : -1
+        a.favorites <= b.favorites ? 1 : -1
       );
-      console.log(sortFav[0], sortFav[sortFav.length - 1]);
       return {
         ...state,
         showedComics: sortFav.slice(0, 10),
