@@ -32,10 +32,9 @@ export const comicReducer = (state = initialState, action) => {
         isLoading: false,
       };
     case FETCH_SUCCESS:
-      const randComics = fourRandos(state.comics);
       return {
         ...state,
-        showedComics: [...state.showedComics, ...randComics],
+        showedComics: [...state.showedComics, ...fourRandos(state.comics)],
         error: "",
       };
     case FETCH_FAIL:
@@ -45,34 +44,30 @@ export const comicReducer = (state = initialState, action) => {
         error: action.payload,
       };
     case SEARCH_COMICS:
-      const filtered = state.comics.filter((comic) => {
-        return comic.title.toLowerCase().includes(action.payload);
-      });
-      const snapshot = filtered.slice(0, 50);
       return {
         ...state,
-        showedComics: snapshot,
+        showedComics: state.comics
+          .filter((comic) => {
+            return comic.title.toLowerCase().includes(action.payload);
+          })
+          .slice(0, 50),
       };
     case SORT_COMICS_RECENT:
-      let sorted = state.comics.sort();
-      sorted.reverse();
       return {
         ...state,
-        showedComics: sorted.slice(0, 75),
+        showedComics: state.comics.sort().reverse().slice(0, 50),
       };
     case SORT_COMICS_RANDOM:
-      const sortRandRes = fourRandos(state.comics);
       return {
         ...state,
-        showedComics: sortRandRes,
+        showedComics: fourRandos(state.comics),
       };
     case SORT_COMICS_FAVORITES:
-      let sortFav = state.comics.sort((a, b) =>
-        a.favorites <= b.favorites ? 1 : -1
-      );
       return {
         ...state,
-        showedComics: sortFav.slice(0, 10),
+        showedComics: state.comics
+          .sort((a, b) => (a.favorites <= b.favorites ? 1 : -1))
+          .slice(0, 10),
       };
     case ADD_COMMENT:
       return {
