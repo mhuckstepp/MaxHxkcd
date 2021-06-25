@@ -23,7 +23,12 @@ const Comics = () => {
             <p class="pt-10">LOADING</p>
           </div>
         )}
-        {state.error && <div>"ERROR WHILE LOADING"</div>}
+        {state.error && (
+          <div>
+            Sorry, something went wrong while trying to load comics. Try
+            refreshing the page!
+          </div>
+        )}
 
         <InfiniteScroll
           dataLength={state.showedComics.length}

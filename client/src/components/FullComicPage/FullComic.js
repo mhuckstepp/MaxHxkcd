@@ -45,7 +45,6 @@ const FullComic = () => {
       .get(url(`/api/comic/${num}`))
       .then((comic) => {
         setSelectComic([comic.data]);
-        console.log(comic.data);
         setComments(comic.data.comments);
       })
       .catch((err) => console.log(err));

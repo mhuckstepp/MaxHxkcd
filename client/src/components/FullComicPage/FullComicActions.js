@@ -29,8 +29,6 @@ export const pushFavorite = (num) => {
     .put(url(`/api/comic/${num}`), {
       favorites: 1,
     })
-    .then((resp) => {
-      console.log(resp);
-    })
-    .catch((err) => console.log(err));
+    .then((resp) => {})
+    .catch((err) => console.log(err.message));
 };
