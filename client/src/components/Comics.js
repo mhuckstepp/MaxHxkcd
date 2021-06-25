@@ -11,17 +11,24 @@ const Comics = () => {
   function fetchMore() {
     dispatch(fetchComics());
   }
+
   return (
     <div>
       <div className="flex flex-col items-center w-4/5 m-auto md:w-full  ">
-        {state.isLoading && <div>"LOADING...."</div>}
+        {state.isLoading && (
+          <div>
+            <div class="block animate-spin ease duration-300 w-10 h-10 mt-20 bg-black mx-2">
+              {" "}
+            </div>
+            <p class="pt-10">LOADING</p>
+          </div>
+        )}
         {state.error && <div>"ERROR WHILE LOADING"</div>}
 
         <InfiniteScroll
           dataLength={state.showedComics.length}
           next={() => fetchMore()}
           hasMore={true}
-          loader={<h4>...</h4>}
         >
           {state.showedComics.map((comic) => {
             if (comic) {
