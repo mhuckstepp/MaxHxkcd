@@ -47,8 +47,8 @@ export const searchComics = (search) => {
   return { type: SEARCH_COMICS, payload: search.toLowerCase() };
 };
 
-export const sortByRecent = () => {
-  return { type: SORT_COMICS_RECENT };
+export const sortByRecent = (reversed) => {
+  return { type: SORT_COMICS_RECENT, payload: reversed };
 };
 
 export const sortByFavorites = () => {

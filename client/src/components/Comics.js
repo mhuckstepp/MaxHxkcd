@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { fetchComics } from "../actions";
 import { useSelector, useDispatch } from "react-redux";
 import Comic from "./Comic";
@@ -30,19 +30,31 @@ const Comics = () => {
           </div>
         )}
 
-        <InfiniteScroll
-          dataLength={state.showedComics.length}
-          next={() => fetchMore()}
-          hasMore={true}
-        >
-          {state.showedComics.map((comic) => {
-            if (comic) {
-              return <Comic comic={comic} key={comic.num} />;
-            } else {
-              return null;
-            }
-          })}
-        </InfiniteScroll>
+        {state.infScroll ? (
+          <InfiniteScroll
+            dataLength={state.showedComics.length}
+            next={() => fetchMore()}
+            hasMore={true}
+          >
+            {state.showedComics.map((comic) => {
+              if (comic) {
+                return <Comic comic={comic} key={comic.num} />;
+              } else {
+                return null;
+              }
+            })}
+          </InfiniteScroll>
+        ) : (
+          <div>
+            {state.showedComics.map((comic) => {
+              if (comic) {
+                return <Comic comic={comic} key={comic.num} />;
+              } else {
+                return null;
+              }
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

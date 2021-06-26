@@ -16,6 +16,7 @@ const initialState = {
   isFetching: false,
   err: "",
   showedComics: [],
+  infScroll: true,
 };
 
 export const comicReducer = (state = initialState, action) => {
@@ -46,28 +47,40 @@ export const comicReducer = (state = initialState, action) => {
     case SEARCH_COMICS:
       return {
         ...state,
-        showedComics: state.comics
+        showedComics: [...state.comics]
           .filter((comic) => {
             return comic.title.toLowerCase().includes(action.payload);
           })
           .slice(0, 50),
+        infScroll: false,
       };
     case SORT_COMICS_RECENT:
-      return {
-        ...state,
-        showedComics: state.comics.sort().reverse().slice(0, 50),
-      };
+      if (!action.payload) {
+        return {
+          ...state,
+          showedComics: [...state.comics].sort().slice(0, 50),
+          infScroll: false,
+        };
+      } else {
+        return {
+          ...state,
+          showedComics: [...state.comics].sort().reverse().slice(0, 50),
+          infScroll: false,
+        };
+      }
     case SORT_COMICS_RANDOM:
       return {
         ...state,
         showedComics: fourRandos(state.comics),
+        infScroll: true,
       };
     case SORT_COMICS_FAVORITES:
       return {
         ...state,
-        showedComics: state.comics
+        showedComics: [...state.comics]
           .sort((a, b) => (a.favorites <= b.favorites ? 1 : -1))
           .slice(0, 10),
+        infScroll: false,
       };
     case ADD_COMMENT:
       return {

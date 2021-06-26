@@ -7,7 +7,7 @@ const SortComics = () => {
   const [reversed, setReversed] = useState(true);
 
   const sortRecent = () => {
-    dispatch(sortByRecent());
+    dispatch(sortByRecent(reversed));
     setReversed(!reversed);
   };
 
