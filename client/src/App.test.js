@@ -1,9 +1,14 @@
 import React from "react";
-import { render, act } from "@testing-library/react";
+import { render, cleanup } from "./utils/test-utils";
 import App from "./App";
 
+afterEach(() => {
+  cleanup();
+  jest.clearAllMocks();
+});
+
 describe("<App /> component tests", () => {
-  test("Component renders and inserts Okta widget", async () => {
+  test("App renders and contains elements", async () => {
     const { container } = await render(<App />);
     expect(container).toContainElement(container.firstChild);
   });
