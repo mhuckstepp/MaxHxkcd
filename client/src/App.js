@@ -9,6 +9,7 @@ import DarkModeToggle from "react-dark-mode-toggle";
 import { fetchAllComics } from "./actions";
 import { useDispatch, useSelector } from "react-redux";
 import SortComics from "./components/SortComics";
+import Charts from "./components/Charts/Charts";
 
 function App() {
   const [darkOn, setDarkOn] = useDarkMode();
@@ -61,9 +62,10 @@ function App() {
           </div>
           <div className="mx-auto  ">
             <Route exact path="/" component={Comics} />
-            <Route path="/:num" component={FullComic} />
+            <Route  exact path="/comic/:num" component={FullComic} />
             {/* <FaviAnimation /> */}
           </div>
+            <Route  exact path="/stats" component={Charts} />
         </div>
       </div>
     </Switch>

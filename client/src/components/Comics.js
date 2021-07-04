@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { fetchComics } from "../actions";
 import { useSelector, useDispatch } from "react-redux";
 import Comic from "./Comic";
