@@ -27,11 +27,11 @@ const FullComic = () => {
   };
 
   const handleNext = () => {
-    history.push(`/${num + 1}`);
+    history.push(`/comic/${num + 1}`);
   };
 
   const handleLast = () => {
-    history.push(`/${num - 1}`);
+    history.push(`/comic/${num - 1}`);
   };
 
   const addFavorite = () => {
