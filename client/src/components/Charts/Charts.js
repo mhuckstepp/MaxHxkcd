@@ -68,7 +68,7 @@ const Charts = () => {
   };
 
   return (
-    <div className="w-full border-2 border-black flex flex-col mt-12 items-center text-center ">
+    <div className="w-full flex flex-col mt-12 items-center text-center ">
       <div className=" w-1/2 rounded bg-white shadow m-8 p-8 flex flex-col items-center text-center max-w-screen-xl dark:bg-gray-400">
         <Line data={totalPerYear} options={options} />
       </div>
