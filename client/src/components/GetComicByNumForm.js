@@ -2,16 +2,13 @@ import React from "react";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
-const GetComicByNumForm = ({length}) => {
+const GetComicByNumForm = ({ length }) => {
   let history = useHistory();
   const [number, setNumber] = useState("");
   const [error, setError] = useState(false);
 
   const changeHandler = (e) => {
-    if (
-      e.target.value >= 0 &&
-      e.target.value <= length.num
-    ) {
+    if (e.target.value >= 0 && e.target.value <= length.num) {
       setNumber(e.target.value);
       setError(false);
     } else {
@@ -21,11 +18,8 @@ const GetComicByNumForm = ({length}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (
-      number > 0 &&
-      number <= length.num
-    ) {
-      history.push(`/${number}`);
+    if (number > 0 && number <= length.num) {
+      history.push(`/comic/${number}`);
       setError(false);
     } else {
       setError(true);
@@ -50,12 +44,14 @@ const GetComicByNumForm = ({length}) => {
             # Must be 1 - {length.num + 1}
           </p>
         )}
-       {!error && <button
-          class="inline-block px-3 my-2 text-xs font-sm leading-6 text-center text-white uppercase transition bg-gray-300 dark:bg-gray-700 rounded-full shadow ripple waves-light hover:shadow-lg focus:outline-none hover:bg-black"
-          type="submit"
-        >
-          Jump
-        </button>}
+        {!error && (
+          <button
+            class="inline-block px-3 my-2 text-xs font-sm leading-6 text-center text-white uppercase transition bg-gray-300 dark:bg-gray-700 rounded-full shadow ripple waves-light hover:shadow-lg focus:outline-none hover:bg-black"
+            type="submit"
+          >
+            Jump
+          </button>
+        )}
       </form>
     </div>
   );

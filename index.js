@@ -75,7 +75,7 @@ app.put("/api/comic/:num", async (req, res, next) => {
 });
 
 app.use("/", (req, res, next) => {
-  res.json("Sorry - we broke something.");
+  res.json("Sorry - we broke something. Try refreshing the page");
 });
 
 app.listen(port, () => {
