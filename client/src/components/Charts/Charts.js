@@ -62,7 +62,7 @@ const Charts = () => {
     labels: wordCounts.map((word) => word[0]),
     datasets: [
       {
-        label: "Words in description by month",
+        label: "Most used words",
         data: wordCounts.map((word) => {
           return word[1];
         }),
@@ -90,7 +90,7 @@ const Charts = () => {
     ],
     datasets: [
       {
-        label: "Word length of titles by month",
+        label: "Word length of blurbs by month",
         data: wordCountsByMonth.map((counts) => {
           return (counts[1] / counts[0]).toFixed(1);
         }),
