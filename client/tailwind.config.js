@@ -1,8 +1,5 @@
 module.exports = {
-  purge: [    
-  './src/**/*.html',
-  './src/**/*.jsx',
-  ],
+  purge: [],
   darkMode: "class", // or 'media' or 'class'
   theme: {
     screens: {
