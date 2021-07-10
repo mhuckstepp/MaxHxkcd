@@ -11,7 +11,37 @@ import {
 } from "../actions";
 import { fourRandos } from "../utils/ReduxFuncs";
 
-const initialState = {
+interface Comic {
+  comic_id: number;
+  num: number;
+  month: string;
+  link: string;
+  year: string;
+  news: string;
+  safe_title: string;
+  transcript: string;
+  alt: string;
+  img: string;
+  title: string;
+  extra_parts: number;
+  favorites: number;
+  comments: {}[];
+}
+
+interface ComicState {
+  comics: any;
+  isFetching: boolean;
+  err: string;
+  showedComics: any;
+  infScroll: boolean;
+}
+
+type ComicsAction = {
+  type: string;
+  payload?: any;
+};
+
+const initialState: ComicState = {
   comics: [],
   isFetching: false,
   err: "",
@@ -19,7 +49,10 @@ const initialState = {
   infScroll: true,
 };
 
-export const comicReducer = (state = initialState, action) => {
+export const comicReducer = (
+  state: ComicState = initialState,
+  action: ComicsAction
+) => {
   switch (action.type) {
     case FETCH_START:
       return {
@@ -85,7 +118,7 @@ export const comicReducer = (state = initialState, action) => {
     case ADD_COMMENT:
       return {
         ...state,
-        comics: state.comics.map((comic) => {
+        comics: state.comics.map((comic: Comic) => {
           if (Number(comic.num) === Number(action.payload.num)) {
             return {
               ...comic,
