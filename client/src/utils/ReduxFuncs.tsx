@@ -1,4 +1,5 @@
-export const fourRandos = (comics) => {
+
+export const fourRandos = (comics : []) => {
   let randOne = Math.ceil(Math.random() * comics.length);
   let randTwo = Math.ceil(Math.random() * comics.length);
   let randThree = Math.ceil(Math.random() * comics.length);

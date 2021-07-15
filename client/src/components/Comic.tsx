@@ -1,9 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Comic = (props) => {
-  const { comic } = props;
+type ComicType = {
+        comic_id: string,
+        num: number,
+        month: string,
+        link: string,
+        year: string,
+        news: string,
+        safe_title: string,
+        transcript: string,
+        alt: string,
+        img: string,
+        title: string,
+        day: string,
+        extra_parts?: any,
+        favorites: number
+}
 
+type ComicProps = {
+  comic: ComicType;
+};
+
+const Comic = ({comic}: ComicProps) => {
   return (
     <div>
       <Link to={`/comic/${comic.num}`}>

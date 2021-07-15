@@ -19,7 +19,6 @@ function App() {
   useEffect(() => {
     dispatch(fetchAllComics());
   }, [dispatch]);
-
   return (
     <Switch>
       <div className={darkOn ? "container  dark" : "container "}>

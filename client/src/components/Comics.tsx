@@ -3,9 +3,10 @@ import { fetchComics } from "../actions";
 import { useSelector, useDispatch } from "react-redux";
 import Comic from "./Comic";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { RootState } from "../reducers";
 
 const Comics = () => {
-  const state = useSelector((state) => state);
+  const state = useSelector((state: RootState) => state);
   const dispatch = useDispatch();
 
   function fetchMore() {
@@ -17,10 +18,10 @@ const Comics = () => {
       <div className="flex flex-col items-center w-4/5 m-auto md:w-full  ">
         {state.isLoading && (
           <div>
-            <div class="block animate-spin ease duration-300 w-10 h-10 mt-20 bg-black mx-2">
+            <div className="block animate-spin ease duration-300 w-10 h-10 mt-20 bg-black mx-2">
               {" "}
             </div>
-            <p class="pt-10">LOADING</p>
+            <p className="pt-10">LOADING</p>
           </div>
         )}
         {state.error && (

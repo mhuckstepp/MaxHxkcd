@@ -10,16 +10,32 @@ import {
   SORT_COMICS_FAVORITES,
 } from "../actions";
 import { fourRandos } from "../utils/ReduxFuncs";
+import { Comic } from "./models";
 
-const initialState = {
-  comics: [],
-  isFetching: false,
-  err: "",
-  showedComics: [],
-  infScroll: true,
+interface ComicState {
+  comics: [];
+  isFetching: boolean;
+  error: string;
+  showedComics: any;
+  infScroll: boolean;
+  isLoading: boolean;
+}
+
+type ComicsAction = {
+  type: string;
+  payload?: any;
 };
 
-export const comicReducer = (state = initialState, action) => {
+const initialState: ComicState = {
+  comics: [],
+  isFetching: false,
+  error: "",
+  showedComics: [],
+  infScroll: true,
+  isLoading: true,
+};
+
+export const comicReducer = (state = initialState, action: ComicsAction) => {
   switch (action.type) {
     case FETCH_START:
       return {
@@ -48,7 +64,7 @@ export const comicReducer = (state = initialState, action) => {
       return {
         ...state,
         showedComics: [...state.comics]
-          .filter((comic) => {
+          .filter((comic: Comic) => {
             return comic.title.toLowerCase().includes(action.payload);
           })
           .slice(0, 50),
@@ -78,14 +94,14 @@ export const comicReducer = (state = initialState, action) => {
       return {
         ...state,
         showedComics: [...state.comics]
-          .sort((a, b) => (a.favorites <= b.favorites ? 1 : -1))
+          .sort((a: Comic, b: Comic) => (a.favorites <= b.favorites ? 1 : -1))
           .slice(0, 10),
         infScroll: false,
       };
     case ADD_COMMENT:
       return {
         ...state,
-        comics: state.comics.map((comic) => {
+        comics: state.comics.map((comic: Comic) => {
           if (Number(comic.num) === Number(action.payload.num)) {
             return {
               ...comic,
@@ -100,3 +116,5 @@ export const comicReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export type RootState = ReturnType<typeof comicReducer>
