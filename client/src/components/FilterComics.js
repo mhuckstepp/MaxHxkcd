@@ -38,7 +38,7 @@ const FilterComics = () => {
     <div className=" flex flex-col items-center w-48 self-center  lg:m-0">
       <p>Search Comic by Title</p>
       <input
-        class="focus:ring-indigo-500 focus:border-indigo-500 block text-xl border-gray-300 rounded-md w-3/5 mx-auto"
+        className="focus:ring-indigo-500 focus:border-indigo-500 block text-xl border-gray-300 rounded-md w-3/5 mx-auto"
         type="text"
         name="jumpToNum"
         value={search}
