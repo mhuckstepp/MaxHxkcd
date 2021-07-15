@@ -36,6 +36,7 @@ const Comics = () => {
             dataLength={state.showedComics.length}
             next={() => fetchMore()}
             hasMore={true}
+            loader={<div></div>}
           >
             {state.showedComics.map((comic) => {
               if (comic) {
