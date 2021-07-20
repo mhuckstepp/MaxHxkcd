@@ -1,11 +1,4 @@
 {
-    "cSpell.words": [
-        "formik",
-        "four",
-        "rando",
-        "randos"
-    ],
-    "cSpell.ignoreWords": [
-        "favorited"
-    ]
+  "cSpell.words": ["formik", "four", "rando", "randos"],
+  "cSpell.ignoreWords": ["favorited", "middlewares"]
 }
