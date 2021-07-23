@@ -61,10 +61,9 @@ function App() {
           </div>
           <div className="mx-auto  ">
             <Route exact path="/" component={Comics} />
-            <Route  exact path="/comic/:num" component={FullComic} />
-            {/* <FaviAnimation /> */}
+            <Route exact path="/comic/:num" component={FullComic} />
           </div>
-            <Route  exact path="/stats" component={Charts} />
+          <Route exact path="/stats" component={Charts} />
         </div>
       </div>
     </Switch>

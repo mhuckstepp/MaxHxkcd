@@ -1,3 +1,5 @@
+import { type } from "node:os";
+
 export interface Comic {
     comic_id: number;
     num: number;
@@ -14,3 +16,17 @@ export interface Comic {
     favorites: number;
     comments: {}[];
   }
+
+export  interface ComicState {
+    comics: [];
+    isFetching: boolean;
+    error: string;
+    showedComics: any;
+    infScroll: boolean;
+    isLoading: boolean;
+  }
+  
+export type ComicsAction = {
+    type: string;
+    payload?: any;
+  };

@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import { postComment } from "./FullComicActions";
 
 const Comments = ({ comments, setComments, num }) => {
+  
   const formik = useFormik({
     initialValues: { poster: "", comment: "" },
     onSubmit: (values) => {
@@ -10,6 +11,7 @@ const Comments = ({ comments, setComments, num }) => {
       postComment({ ...values, num });
     },
   });
+  
   return (
     <div className="flex flex-col mt-2 items-center text-center">
       <p className="font-bold">Add a Comment</p>

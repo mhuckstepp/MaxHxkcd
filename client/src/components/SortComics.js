@@ -4,11 +4,11 @@ import { sortByRecent, sortByRandom, sortByFavorites } from "../actions";
 
 const SortComics = () => {
   const dispatch = useDispatch();
-  const [reversed, setReversed] = useState(true);
+  const [ascending, setAscending] = useState(true);
 
   const sortRecent = () => {
-    dispatch(sortByRecent(reversed));
-    setReversed(!reversed);
+    dispatch(sortByRecent(ascending));
+    setAscending(!ascending);
   };
 
   const sortFavorites = () => {
@@ -18,17 +18,18 @@ const SortComics = () => {
   const sortRandom = () => {
     dispatch(sortByRandom());
   };
+
   return (
     <div className="flex flex-col justify-between">
       <button
         className="inline-block px-3 my-2 text-xs font-sm leading-6 text-center text-white uppercase transition bg-gray-300 dark:bg-gray-700 rounded-full shadow ripple waves-light hover:shadow-lg focus:outline-none hover:bg-black"
-        onClick={() => sortRecent()}
+        onClick={sortRecent}
       >
-        {reversed ? "Most Recent" : "Oldest"}
+        {ascending ? "Most Recent" : "Oldest"}
       </button>
       <button
         className="inline-block px-3 my-2 text-xs font-sm leading-6 text-center text-white uppercase transition bg-gray-300 dark:bg-gray-700 rounded-full shadow ripple waves-light hover:shadow-lg focus:outline-none hover:bg-black"
-        onClick={() => sortFavorites()}
+        onClick={sortFavorites}
       >
         Most Favorites
       </button>

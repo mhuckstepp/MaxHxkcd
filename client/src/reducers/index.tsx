@@ -10,21 +10,7 @@ import {
   SORT_COMICS_FAVORITES,
 } from "../actions";
 import { fourRandos } from "../utils/ReduxFuncs";
-import { Comic } from "./models";
-
-interface ComicState {
-  comics: [];
-  isFetching: boolean;
-  error: string;
-  showedComics: any;
-  infScroll: boolean;
-  isLoading: boolean;
-}
-
-type ComicsAction = {
-  type: string;
-  payload?: any;
-};
+import { Comic, ComicState, ComicsAction } from "./models";
 
 const initialState: ComicState = {
   comics: [],
@@ -95,7 +81,7 @@ export const comicReducer = (state = initialState, action: ComicsAction) => {
         ...state,
         showedComics: [...state.comics]
           .sort((a: Comic, b: Comic) => (a.favorites <= b.favorites ? 1 : -1))
-          .slice(0, 10),
+          .slice(0, 50),
         infScroll: false,
       };
     case ADD_COMMENT:
@@ -117,4 +103,4 @@ export const comicReducer = (state = initialState, action: ComicsAction) => {
   }
 };
 
-export type RootState = ReturnType<typeof comicReducer>
+export type RootState = ReturnType<typeof comicReducer>;

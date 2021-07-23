@@ -10,5 +10,6 @@ afterEach(() => {
 describe("<App />", () => {
   test("Component renders", async () => {
     render(<App />);
+    screen.debug();
   });
 });
