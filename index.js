@@ -19,27 +19,27 @@ app.get("/:num", function (req, res) {
 
 const port = process.env.PORT;
 
-app.get("/api/comic/:num", async (req, res, next) => {
+app.get("/api/comic/:num", async (req, res) => {
   let comicNum = Number(req.params.num);
   let [comic] = await db("comics").where({ num: comicNum });
   let comments = await db("comments").where({ num: comicNum });
   res.status(200).json({ ...comic, comments: comments });
 });
 
-app.get("/api/comments/:num", async (req, res, next) => {
+app.get("/api/comments/:num", async (req, res) => {
   let comicNum = Number(req.params.num);
   let comments = await db("comments").where({ num: comicNum });
   res.json(comments);
 });
 
-app.get("/api/all", async (req, res, next) => {
+app.get("/api/all", async (req, res) => {
   let comics = await db("comics").orderBy("num", "asc");
   res.json(comics);
 });
 
-app.post("/api/comic", async (req, res, next) => {
+app.post("/api/comic", async (req, res) => {
   let comic = req.body;
-  let insert = await db("comics")
+  await db("comics")
     .insert(comic)
     .then((response) => {
       console.log(response);
@@ -48,7 +48,7 @@ app.post("/api/comic", async (req, res, next) => {
   res.json(comic);
 });
 
-app.post("/api/comment", async (req, res, next) => {
+app.post("/api/comment", async (req, res) => {
   let comment = req.body;
   await db("comments")
     .insert(comment)
@@ -59,7 +59,7 @@ app.post("/api/comment", async (req, res, next) => {
   res.status(200).json(comment);
 });
 
-app.put("/api/comic/:num", async (req, res, next) => {
+app.put("/api/comic/:num", async (req, res) => {
   const num = req.params.num;
   const [favoritesNum] = await db("comics")
     .select("comics.favorites")
@@ -74,7 +74,7 @@ app.put("/api/comic/:num", async (req, res, next) => {
   res.status(200).json(favoritesNum + 1);
 });
 
-app.use("/", (req, res, next) => {
+app.use("/", (req, res) => {
   res.json("Sorry - we broke something. Try refreshing the page");
 });
 
