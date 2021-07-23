@@ -26,12 +26,6 @@ app.get("/api/comic/:num", async (req, res) => {
   res.status(200).json({ ...comic, comments: comments });
 });
 
-app.get("/api/comments/:num", async (req, res) => {
-  let comicNum = Number(req.params.num);
-  let comments = await db("comments").where({ num: comicNum });
-  res.json(comments);
-});
-
 app.get("/api/all", async (req, res) => {
   let comics = await db("comics").orderBy("num", "asc");
   res.json(comics);

@@ -49,9 +49,17 @@ function App() {
                 <Route exact path="/" component={SortComics} />
               </div>
             </div>
-            <h1 className="text-8xl lg:text-6xl md:text-4xl self-center  ml-24 lg:m-0  ">
-              xkcd comics
-            </h1>
+            
+            <div className='flex flex-col items-center'>
+              {location.pathname !== "/stats" && (
+                <Link className="text-xs self-center mb-4"  to="/stats">
+                Stats
+                </Link>
+              )}
+              <h1 className="text-8xl lg:text-6xl md:text-4xl lg:m-0 self-center">
+                xkcd comics
+              </h1> 
+            </div>
             <div className=" flex flex-col justify-center md:text-xs	">
               <Route exact path="/" component={FilterComics} />
               <GetComicByNumForm
