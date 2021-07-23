@@ -3,9 +3,8 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchComics, fetchComics } from "../actions";
 
-const FilterComics = () => {
+const FilterComics = ({search, setSearch}) => {
   const { showedComics } = useSelector((state) => state);
-  const [search, setSearch] = useState("");
   const [searched, setSearched] = useState(false);
   const [searchError, setSearchError] = useState(false);
   const dispatch = useDispatch();

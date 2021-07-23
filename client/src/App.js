@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Route, Link, useLocation } from "react-router-dom";
 import Comics from "./components/Comics";
 import FullComic from "./components/FullComicPage/FullComic";
@@ -13,6 +13,7 @@ import Charts from "./components/Charts/Charts";
 
 function App() {
   const [darkOn, setDarkOn] = useDarkMode();
+  const [search, setSearch] = useState("");
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
   const location = useLocation();
@@ -46,7 +47,9 @@ function App() {
                   checked={darkOn}
                   size={40}
                 />
-                <Route exact path="/" component={SortComics} />
+                <Route exact path="/">
+                  <SortComics setSearch={setSearch}/>
+                </Route>
               </div>
             </div>
             
@@ -61,7 +64,9 @@ function App() {
               </h1> 
             </div>
             <div className=" flex flex-col justify-center md:text-xs	">
-              <Route exact path="/" component={FilterComics} />
+              <Route exact path="/">
+                  <FilterComics search={search} setSearch={setSearch}/>
+              </Route>
               <GetComicByNumForm
                 length={state.comics[state.comics.length - 1]}
               />

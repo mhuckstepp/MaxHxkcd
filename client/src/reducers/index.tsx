@@ -51,7 +51,10 @@ export const comicReducer = (state = initialState, action: ComicsAction) => {
         ...state,
         showedComics: [...state.comics]
           .filter((comic: Comic) => {
-            return comic.title.toLowerCase().includes(action.payload);
+            return (comic.title.toLowerCase().includes(action.payload) || 
+            comic.alt.toLowerCase().includes(action.payload) ||
+            comic.transcript.toLowerCase().includes(action.payload)
+            )
           })
           .slice(0, 50),
         infScroll: false,

@@ -2,21 +2,24 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { sortByRecent, sortByRandom, sortByFavorites } from "../actions";
 
-const SortComics = () => {
+const SortComics = ({setSearch}) => {
   const dispatch = useDispatch();
   const [ascending, setAscending] = useState(true);
 
   const sortRecent = () => {
     dispatch(sortByRecent(ascending));
     setAscending(!ascending);
+    setSearch('')
   };
 
   const sortFavorites = () => {
     dispatch(sortByFavorites());
+    setSearch('')
   };
 
   const sortRandom = () => {
     dispatch(sortByRandom());
+    setSearch('')
   };
 
   return (
