@@ -35,10 +35,4 @@ describe("GET individual comic ", () => {
   });
 });
 
-describe("GET comments for a comic ", () => {
-  test("It should respond with comments for an individual comic", async () => {
-    const response = await request(app).get("/api/comments/2470");
-    expect(response.body).toHaveLength(2);
-    expect(response.statusCode).toBe(200);
-  });
-});
+
