@@ -5,13 +5,14 @@ import { postComment } from "./FullComicActions";
 const Comments = ({ comments, setComments, num }) => {
   const formik = useFormik({
     initialValues: { poster: "", comment: "" },
-    onSubmit: (values) => {
+    onSubmit: (values, actions) => {
       console.log(comments);
       setComments([...comments, values]);
       postComment({ ...values, num });
+      actions.resetForm({ poster: "", comment: "" });
     },
   });
-  
+
   return (
     <div className="flex flex-col mt-2 items-center text-center">
       <p className="font-bold">Add a Comment</p>

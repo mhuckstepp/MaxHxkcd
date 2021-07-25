@@ -3,10 +3,9 @@ import { fetchComics } from "../actions";
 import { useSelector, useDispatch } from "react-redux";
 import Comic from "./Comic";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { RootState } from "../reducers";
 
 const Comics = () => {
-  const state = useSelector((state: RootState) => state);
+  const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
   function fetchMore() {
