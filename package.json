@@ -18,7 +18,7 @@
     "seedh": "heroku run knex seed:run -a maxhxkcd",
     "test": "cross-env NODE_ENV=testing jest --verbose --runInBand",
     "deploy": "git push heroku main",
-    "build": "tsc --project ./",
+    "postinstall": "tsc --project ./",
     "heroku-postbuild": "cd client && npm i && npm run build"
   },
   "author": "",
