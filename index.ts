@@ -14,9 +14,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "client/build")));
 
 app.get("/:num", function (req: Request, res: Response, next) {
-  res.sendFile(path.join(__dirname, "client/build", 'index.html'));
+  res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
-
 
 app.get("/api/comic/:num", async (req: Request, res: Response, next) => {
   let comicNum = Number(req.params.num);
@@ -25,7 +24,7 @@ app.get("/api/comic/:num", async (req: Request, res: Response, next) => {
   if (!comic) {
     next({ message: "We couldn't find that comic" });
   } else {
-    res.status(200).json({ ...comic, comments: comments });
+    res.status(200).json({ ...comic, comments: comments || [] });
   }
 });
 
