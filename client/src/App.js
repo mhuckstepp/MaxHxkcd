@@ -20,6 +20,7 @@ function App() {
   useEffect(() => {
     dispatch(fetchAllComics());
   }, [dispatch]);
+  
   return (
     <Switch>
       <div className={darkOn ? "container  dark" : "container "}>
@@ -48,24 +49,24 @@ function App() {
                   size={40}
                 />
                 <Route exact path="/">
-                  <SortComics setSearch={setSearch}/>
+                  <SortComics setSearch={setSearch} />
                 </Route>
               </div>
             </div>
-            
-            <div className='flex flex-col items-center'>
+
+            <div className="flex flex-col items-center">
               {location.pathname !== "/stats" && (
-                <Link className="text-xs self-center mb-4"  to="/stats">
-                Stats
+                <Link className="text-xs self-center mb-4" to="/stats">
+                  Stats
                 </Link>
               )}
               <h1 className="text-8xl lg:text-6xl md:text-4xl lg:m-0 self-center">
                 xkcd comics
-              </h1> 
+              </h1>
             </div>
             <div className=" flex flex-col justify-center md:text-xs	">
               <Route exact path="/">
-                  <FilterComics search={search} setSearch={setSearch}/>
+                <FilterComics search={search} setSearch={setSearch} />
               </Route>
               <GetComicByNumForm
                 length={state.comics[state.comics.length - 1]}

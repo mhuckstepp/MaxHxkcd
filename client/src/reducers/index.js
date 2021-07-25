@@ -10,9 +10,8 @@ import {
   SORT_COMICS_FAVORITES,
 } from "../actions";
 import { fourRandos } from "../utils/ReduxFuncs";
-import { Comic, ComicState, ComicsAction } from "./models";
 
-const initialState: ComicState = {
+const initialState = {
   comics: [],
   isFetching: false,
   error: "",
@@ -21,7 +20,7 @@ const initialState: ComicState = {
   isLoading: true,
 };
 
-export const comicReducer = (state = initialState, action: ComicsAction) => {
+export const comicReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_START:
       return {
@@ -50,7 +49,7 @@ export const comicReducer = (state = initialState, action: ComicsAction) => {
       return {
         ...state,
         showedComics: [...state.comics]
-          .filter((comic: Comic) => {
+          .filter((comic) => {
             return (comic.title.toLowerCase().includes(action.payload) || 
             comic.alt.toLowerCase().includes(action.payload) ||
             comic.transcript.toLowerCase().includes(action.payload)
@@ -83,14 +82,14 @@ export const comicReducer = (state = initialState, action: ComicsAction) => {
       return {
         ...state,
         showedComics: [...state.comics]
-          .sort((a: Comic, b: Comic) => (a.favorites <= b.favorites ? 1 : -1))
+          .sort((a, b) => (a.favorites <= b.favorites ? 1 : -1))
           .slice(0, 50),
         infScroll: false,
       };
     case ADD_COMMENT:
       return {
         ...state,
-        comics: state.comics.map((comic: Comic) => {
+        comics: state.comics.map((comic) => {
           if (Number(comic.num) === Number(action.payload.num)) {
             return {
               ...comic,
@@ -106,4 +105,3 @@ export const comicReducer = (state = initialState, action: ComicsAction) => {
   }
 };
 
-export type RootState = ReturnType<typeof comicReducer>;

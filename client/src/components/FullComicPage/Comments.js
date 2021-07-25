@@ -12,7 +12,7 @@ const Comments = ({ comments, setComments, num }) => {
       actions.resetForm({ poster: "", comment: "" });
     },
   });
-
+  console.log(comments);
   return (
     <div className="flex flex-col mt-2 items-center text-center">
       <p className="font-bold">Add a Comment</p>

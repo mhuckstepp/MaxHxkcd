@@ -1,9 +1,8 @@
-import express from "express";
-import { Request, Response } from "express";
-import cors from "cors";
-import db from "./db-config";
-import path from "path";
-import dotenv from "dotenv";
+const express = require("express")
+const cors = require("cors")
+const db = require("./db-config")
+const path = require("path")
+const dotenv = require("dotenv")
 
 dotenv.config();
 const port = process.env.PORT;
@@ -11,16 +10,19 @@ const port = process.env.PORT;
 const app = express();
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "client/build")));
 
-app.get("/:num", function (req: Request, res: Response, next) {
+app.get("/", function (req, res, next) {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
-app.get("/api/comic/:num", async (req: Request, res: Response, next) => {
+app.get("/:num", function (req, res, next) {
+  res.sendFile(path.join(__dirname, "client/build", "index.html"));
+});
+
+app.get("/api/comic/:num", async (req, res, next) => {
   let comicNum = Number(req.params.num);
   let comic = await db("comics").where({ num: comicNum }).first();
-  let comments = await db("comments").where({ num: comicNum }).first();
+  let comments = await db("comments").where({ num: comicNum });
   if (!comic) {
     next({ message: "We couldn't find that comic" });
   } else {
@@ -28,16 +30,16 @@ app.get("/api/comic/:num", async (req: Request, res: Response, next) => {
   }
 });
 
-app.get("/api/all", async (req: Request, res: Response, next) => {
+app.get("/api/all", async (req, res, next) => {
   db("comics")
     .orderBy("num", "asc")
-    .then((comics: {}[]) => {
+    .then((comics) => {
       res.json(comics);
     })
     .catch(next);
 });
 
-app.post("/api/comic", async (req: Request, res: Response, next) => {
+app.post("/api/comic", async (req, res, next) => {
   let comic = req.body;
   await db("comics")
     .insert(comic)
@@ -48,7 +50,7 @@ app.post("/api/comic", async (req: Request, res: Response, next) => {
     .catch(next);
 });
 
-app.post("/api/comment", async (req: Request, res: Response, next) => {
+app.post("/api/comment", async (req, res, next) => {
   let comment = req.body;
   await db("comments")
     .insert(comment)
@@ -59,7 +61,7 @@ app.post("/api/comment", async (req: Request, res: Response, next) => {
     .catch(next);
 });
 
-app.put("/api/comic/:num", async (req: Request, res: Response, next) => {
+app.put("/api/comic/:num", async (req, res, next) => {
   const num = req.params.num;
   let favoritesNum = await db("comics")
     .select("comics.favorites")
@@ -74,14 +76,14 @@ app.put("/api/comic/:num", async (req: Request, res: Response, next) => {
     .catch(next);
 });
 
-app.use("/", (req: Request, res: Response, next) => {
+app.use("/", (req, res, next) => {
   res
     .status(404)
     .json("404 :/ Sorry - we broke something. Try refreshing the page");
 });
 
+//eslint-disable-next-line
 app.use((err, req, res, next) => {
-  console.log("run next");
   console.log(err);
   res.status(err.status || 500).json({
     message: err.message,
