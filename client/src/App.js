@@ -54,13 +54,13 @@ function App() {
               </div>
             </div>
 
-            <div className="flex flex-col items-center ml-24">
+            <div className="flex flex-col items-center">
               {location.pathname !== "/stats" && (
                 <Link className="text-xs self-center mb-4 " to="/stats">
                   Stats
                 </Link>
               )}
-              <h1 className="text-8xl lg:text-6xl md:text-4xl lg:m-0 self-center">
+              <h1 className="text-8xl lg:text-6xl md:text-4xl self-center">
                 xkcd comics
               </h1>
             </div>
