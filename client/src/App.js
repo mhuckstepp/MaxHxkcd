@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     dispatch(fetchAllComics());
   }, [dispatch]);
-  
+
   return (
     <Switch>
       <div className={darkOn ? "container  dark" : "container "}>
@@ -54,9 +54,9 @@ function App() {
               </div>
             </div>
 
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center ml-24">
               {location.pathname !== "/stats" && (
-                <Link className="text-xs self-center mb-4" to="/stats">
+                <Link className="text-xs self-center mb-4 " to="/stats">
                   Stats
                 </Link>
               )}

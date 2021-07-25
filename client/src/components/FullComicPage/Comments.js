@@ -6,7 +6,6 @@ const Comments = ({ comments, setComments, num }) => {
   const formik = useFormik({
     initialValues: { poster: "", comment: "" },
     onSubmit: (values, actions) => {
-      console.log(comments);
       setComments([...comments, values]);
       postComment({ ...values, num });
       actions.resetForm({ poster: "", comment: "" });
@@ -15,7 +14,14 @@ const Comments = ({ comments, setComments, num }) => {
   console.log(comments);
   return (
     <div className="flex flex-col mt-2 items-center text-center">
-      <p className="font-bold">Add a Comment</p>
+      {comments && <p className="font-bold">Comments:</p>}
+      {comments &&
+        comments.map((comment) => (
+          <div key={comment.comment_id} className="media">
+            {comment.poster} - {comment.comment}{" "}
+          </div>
+        ))}
+      <p className="font-bold mt-4">Add a Comment</p>
       <form
         onSubmit={formik.handleSubmit}
         className="flex flex-col mt-2 items-center text-center"
@@ -49,13 +55,6 @@ const Comments = ({ comments, setComments, num }) => {
           Submit
         </button>
       </form>
-      {comments && <p className="font-bold">Comments:</p>}
-      {comments &&
-        comments.map((comment) => (
-          <div key={comment.comment_id} className="media">
-            {comment.poster} - {comment.comment}{" "}
-          </div>
-        ))}
     </div>
   );
 };
