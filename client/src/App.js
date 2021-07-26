@@ -28,20 +28,20 @@ function App() {
           <div
             className={
               darkOn
-                ? "flex justify-between  rounded w-full shadow-xl lg:flex-col bg-gray-500"
-                : "flex justify-between  rounded w-full shadow-xl lg:flex-col bg-gradient-to-r from-yellow-200 via-red-200 to-pink-200"
+                ? "flex justify-between  rounded w-full shadow-xl lg:flex-col bg-gray-500  "
+                : "  flex justify-between  rounded w-full shadow-xl lg:flex-col bg-gradient-to-r from-yellow-200 via-red-200 to-pink-200"
             }
           >
-            <div className="flex flex-col justify-between ml-2">
+            <div className="flex flex-col justify-between mx-8">
               {location.pathname !== "/" && (
                 <Link to="/">
-                  <p className="underline md:text-center font-black text-lg">
+                  <p className="underline mx-8 align-center  font-black text-lg">
                     Go Home
                   </p>
                 </Link>
               )}
               <div className="flex flex-col align-center text-center ">
-                <p>Night Mode</p>
+                <p className=" mx-8 align-center text-center ">Night Mode</p>
                 <DarkModeToggle
                   className="self-center mb-2"
                   onChange={setDarkOn}

@@ -14,8 +14,8 @@ const Comments = ({ comments, setComments, num }) => {
   console.log(comments);
   return (
     <div className="flex flex-col mt-2 items-center text-center">
-      {comments && <p className="font-bold">Comments:</p>}
-      {comments &&
+      {!!comments.length && <p className="font-bold">Comments:</p>}
+      {!!comments.length &&
         comments.map((comment) => (
           <div key={comment.comment_id} className="media">
             {comment.poster} - {comment.comment}{" "}
