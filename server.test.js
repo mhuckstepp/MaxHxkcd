@@ -11,10 +11,10 @@ describe("server.js", () => {
   });
 });
 
-describe("responds with empty object on GET / request ", () => {
-  test("It should respond with emply object on get request", async () => {
+// Only works when build folder exists in client
+describe("responds with error on GET / request ", () => {
+  test("It should respond with empty object on get request", async () => {
     const response = await request(app).get("/");
-    expect(response.body).toEqual({});
     expect(response.statusCode).toBe(200);
   });
 });
@@ -34,5 +34,3 @@ describe("GET individual comic ", () => {
     expect(response.statusCode).toBe(200);
   });
 });
-
-

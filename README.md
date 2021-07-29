@@ -1,6 +1,6 @@
 # A better way to view your favorite xkcd comics!
 
-Solo project built from scratch with React, Redux, Tailwind, Node, Express and PostgreSQL.
+Solo project built from scratch with React, Redux, Tailwind, Node, Express PostgreSQL, Heroku Scheduler and xkcd API.
 
 The site loads random comics and includes infinite scroll, night mode and search.
 

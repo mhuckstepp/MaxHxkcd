@@ -13,11 +13,11 @@ app.use(express.json());
 
 app.use(express.static(path.join(__dirname, "client/build")));
 
-app.get("/", function (req, res, next) {
+app.get("/", function (req, res, _) { //eslint-disable-line
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
-app.get("/:num", function (req, res, next) {
+app.get("/:num", function (req, res, _) { //eslint-disable-line
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
@@ -72,13 +72,13 @@ app.put("/api/comic/:num", async (req, res, next) => {
   db("comics")
     .update({ favorites: favoritesNum.favorites + 1 })
     .where({ num })
-    .then((response) => {
+    .then((_) => { //eslint-disable-line
       res.status(200).json(favoritesNum.favorites + 1);
     })
     .catch(next);
 });
 
-app.use("/", (req, res, next) => {
+app.use("/", (req, res, next) => { //eslint-disable-line
   res
     .status(404)
     .json("404 :/ Sorry - we broke something. Try refreshing the page");

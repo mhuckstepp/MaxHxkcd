@@ -10,12 +10,10 @@ async function getLatest() {
   let comic = await getComic("http://xkcd.com/info.0.json");
   db("comics")
     .insert(comic)
-    .then((res) => {
-      console.log("resolved", res);
+    .then((resp) => {
+      console.log("resolved", resp);
     })
     .catch((err) => console.log(err));
 }
 
 getLatest();
-
-module.exports = { getComic, getLatest };

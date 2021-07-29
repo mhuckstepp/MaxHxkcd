@@ -13,7 +13,7 @@ export const SORT_COMICS_RANDOM = "SORT_COMICS_RANDOM";
 
 function url(path) {
   return process.env.NODE_ENV === "development"
-    ? `http://localhost:5000${path}`
+    ? `http://localhost:5001${path}`
     : path;
 }
 
@@ -47,8 +47,8 @@ export const searchComics = (search) => {
   return { type: SEARCH_COMICS, payload: search.toLowerCase() };
 };
 
-export const sortByRecent = (reversed) => {
-  return { type: SORT_COMICS_RECENT, payload: reversed };
+export const sortByRecent = (reverseBool) => {
+  return { type: SORT_COMICS_RECENT, payload: reverseBool };
 };
 
 export const sortByFavorites = () => {
