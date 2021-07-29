@@ -26,7 +26,7 @@ function FaviAnimation() {
   }, [count]);
 
   useEffect(() => {
-    faviElem.href = `%PUBLIC_URL%/favicons/favicon${count}.ico`;
+    faviElem.href = `/favicons/favicon${count}.ico`;
   }, [count, faviElem]);
   return <div></div>;
 }
