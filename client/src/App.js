@@ -10,6 +10,7 @@ import { fetchAllComics } from "./actions";
 import { useDispatch, useSelector } from "react-redux";
 import SortComics from "./components/SortComics";
 import Charts from "./components/Charts/Charts";
+import FaviAnimation from "./utils/faviAnimation";
 
 function App() {
   const [darkOn, setDarkOn] = useDarkMode();
@@ -76,6 +77,7 @@ function App() {
           <div className="mx-auto  ">
             <Route exact path="/" component={Comics} />
             <Route exact path="/comic/:num" component={FullComic} />
+            <FaviAnimation />
           </div>
           <Route exact path="/stats" component={Charts} />
         </div>

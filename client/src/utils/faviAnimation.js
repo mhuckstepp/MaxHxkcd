@@ -3,32 +3,31 @@ import React, { useState, useEffect } from "react";
 function FaviAnimation() {
   const [count, setCount] = useState(0);
 
-  const faviElem = document.getElementById("favicon");
+  const faviElem = document.getElementById("favi");
+  console.log(faviElem.href);
 
-  const padNum = (size, number) => {
-    let s = String(number);
-    while (s.length < (size || 2)) {
-      s = "0" + s;
-    }
-    return s;
-  };
+  // const padNum = (size, number) => {
+  //   let s = String(number);
+  //   while (s.length < (size || 2)) {
+  //     s = "0" + s;
+  //   }
+  //   return s;
+  // };
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (count === 2) {
+      if (count === 3) {
         setCount(0);
       } else {
         setCount((count) => count + 1);
       }
-    }, 1000);
+    }, 2000);
     return () => clearInterval(interval);
   }, [count]);
 
   useEffect(() => {
-    // let num = padNum(2, count);
-    faviElem.href = `./faviGifs/favicon (2) ${count}.png`;
-  }, [count]);
-
+    faviElem.href = `%PUBLIC_URL%/favicons/favicon${count}.ico`;
+  }, [count, faviElem]);
   return <div></div>;
 }
 
