@@ -4,15 +4,6 @@ function FaviAnimation() {
   const [count, setCount] = useState(0);
 
   const faviElem = document.getElementById("favi");
-  console.log(faviElem.href);
-
-  // const padNum = (size, number) => {
-  //   let s = String(number);
-  //   while (s.length < (size || 2)) {
-  //     s = "0" + s;
-  //   }
-  //   return s;
-  // };
 
   useEffect(() => {
     const interval = setInterval(() => {
