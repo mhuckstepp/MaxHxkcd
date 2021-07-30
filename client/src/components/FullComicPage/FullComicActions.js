@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const url = (path) => {
   return process.env.NODE_ENV === "development"
-    ? `http://localhost:5000${path}`
+    ? `http://localhost:5001${path}`
     : path;
 };
 
