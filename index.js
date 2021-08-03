@@ -83,7 +83,7 @@ app.put("/api/comic/:num", async (req, res, next) => {
 //eslint-disable-next-line
 app.use("/api", (req, res, next) => {
   res
-    .status(404)
+    .status(200)
     .json({ api: 'up'});
 });
 
