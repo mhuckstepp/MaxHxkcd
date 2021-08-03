@@ -35,6 +35,7 @@ app.get("/api/comic/:num", async (req, res, next) => {
 
 app.get("/api/all", async (req, res, next) => {
   db("comics")
+    .orderBy("num", "asc")
     .then((comics) => {
       res.json(comics);
     })
@@ -79,12 +80,9 @@ app.put("/api/comic/:num", async (req, res, next) => {
     .catch(next);
 });
 
-
 //eslint-disable-next-line
 app.use("/api", (req, res, next) => {
-  res
-    .status(200)
-    .json({ api: 'up'});
+  res.status(200).json({ api: "up" });
 });
 
 //eslint-disable-next-line
