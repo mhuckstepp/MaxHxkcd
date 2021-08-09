@@ -36,7 +36,7 @@ function App() {
             <div className="flex flex-col justify-between mx-8">
               {location.pathname !== "/" && (
                 <Link to="/">
-                  <p className="underline mx-8 align-center  font-black text-lg">
+                  <p className="underline mx-8 font-black align-center text-center text-lg">
                     Go Home
                   </p>
                 </Link>
