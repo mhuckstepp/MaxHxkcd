@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, "../client/build")));
 
 //eslint-disable-next-line
 app.get("/comic/:num", function (req, res, _) {
-  res.sendFile(path.join(__dirname, "client/build", "index.html"));
+  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
 
 app.get("/api/comic/:num", async (req, res, next) => {
