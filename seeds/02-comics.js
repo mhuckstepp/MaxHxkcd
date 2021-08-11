@@ -1,4 +1,4 @@
-const {comics} = require('../data')
+const {comics} = require('data')
 
 let comicDict = {}
 let newArr = []
