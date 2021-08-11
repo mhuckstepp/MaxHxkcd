@@ -1,5 +1,5 @@
 const axios = require("axios");
-const db = require("./db-config");
+const db = require("db-config");
 
 async function getComic(url) {
   const { data } = await axios.get(url);
