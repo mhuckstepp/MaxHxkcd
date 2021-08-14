@@ -3,6 +3,7 @@ const cors = require("cors");
 const db = require("./db-config");
 const path = require("path");
 require("dotenv").config();
+import * as types from './comics.types';
 
 const port = process.env.PORT;
 
@@ -13,18 +14,13 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "../client/build")));
 
 //eslint-disable-next-line
-// app.get("/", function (req, res, _) {
-//   res.sendFile(path.join(__dirname, "client/build", "index.html"));
-// });
-
-//eslint-disable-next-line
 app.get("/comic/:num", function (req, res, _) {
   res.sendFile(path.join(__dirname, "../client/build", "index.html"));
 });
 
 app.get("/api/comic/:num", async (req, res, next) => {
   let comicNum = Number(req.params.num);
-  let comic = await db("comics").where({ num: comicNum }).first();
+  let comic: types.DBComic = await db("comics").where({ num: comicNum }).first();
   let comments = await db("comments").where({ num: comicNum });
   if (!comic) {
     next({ message: "We couldn't find that comic" });
