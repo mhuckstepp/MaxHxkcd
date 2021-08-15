@@ -7,7 +7,7 @@ function FaviAnimation() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (count === 3) {
+      if (count === 2) {
         setCount(0);
       } else {
         setCount((count) => count + 1);
