@@ -20,7 +20,7 @@ app.get("/comic/:num", function (req, res, _) {
 
 app.get("/api/comic/:num", async (req, res, next) => {
   let comicNum = Number(req.params.num);
-  let comic: types.DBComic = await db("comics").where({ num: comicNum }).first();
+  let comic: types.DBComic | undefined = await db("comics").where({ num: comicNum }).first();
   let comments = await db("comments").where({ num: comicNum });
   if (!comic) {
     next({ message: "We couldn't find that comic" });
@@ -32,14 +32,14 @@ app.get("/api/comic/:num", async (req, res, next) => {
 app.get("/api/all", async (req, res, next) => {
   db("comics")
     .orderBy("num", "asc")
-    .then((comics) => {
+    .then((comics: types.DBComic[]) => {
       res.json(comics);
     })
     .catch(next);
 });
 
 app.post("/api/comic", async (req, res, next) => {
-  let comic = req.body;
+  let comic: types.Comic = req.body;
   await db("comics")
     .insert(comic)
     .then((response) => {

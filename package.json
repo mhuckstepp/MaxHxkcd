@@ -10,7 +10,7 @@
     "start": "node ./dist/index.js",
     "tsc": "tsc",
     "postinstall": "npm run tsc",
-    "dev": "ts-node-dev --respawn --pretty --transpile-only index.ts",
+    "dev": "ts-node-dev --respawn --pretty --transpile-only src/index.ts",
     "rollback": "knex migrate:rollback",
     "migrate": "knex migrate:latest",
     "seed": "knex seed:run",

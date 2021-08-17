@@ -12,6 +12,7 @@ const FullComic = () => {
   const [selectComic, setSelectComic] = useState([{}]);
   const [comments, setComments] = useState([]);
   const [favorited, setFavorited] = useState(false);
+  const [fetchError, setFetchError] = useState("");
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyDown);
@@ -46,9 +47,37 @@ const FullComic = () => {
       .then((comic) => {
         setSelectComic([comic.data]);
         setComments(comic.data.comments);
+        setFetchError("");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err.message);
+        setFetchError(`No comic exists with the # ${num} (${err.message})`);
+      });
   }, [num]); //eslint-disable-line
+
+  if (fetchError) {
+    return (
+      <>
+        <div className="flex flex-col mt-12 items-center text-center">
+          {fetchError}
+        <div className="flex mt-8 mb-5">
+          <button
+            className="bg-gradient-to-r mr-12 p-2 from-blue-300 rounded font-bold"
+            onClick={() => handleLast()}
+            >
+            Previous
+          </button>
+          <button
+            className="bg-gradient-to-l ml-10 p-4 pl-10 from-blue-300 rounded font-bold"
+            onClick={() => handleNext()}
+            >
+            Next
+          </button>
+            </div>
+        </div>
+      </>
+    );
+  }
 
   if (!selectComic[0]) {
     return (
@@ -99,7 +128,7 @@ const FullComic = () => {
         <p className="text-l">Favorites: {favorites}</p>
         {!favorited && (
           <button
-          className="m-5 bg-red-400 hover:bg-red-500 text-white font-bold py-1 px-2 rounded"
+            className="m-5 bg-red-400 hover:bg-red-500 text-white font-bold py-1 px-2 rounded"
             type="submit"
             onClick={() => addFavorite(num)}
           >
