@@ -3,7 +3,7 @@ const cors = require("cors");
 const db = require("./db-config");
 const path = require("path");
 require("dotenv").config();
-import * as types from './comics.types';
+import * as types from "./comics.types";
 
 const port = process.env.PORT;
 
@@ -20,10 +20,14 @@ app.get("/comic/:num", function (req, res, _) {
 
 app.get("/api/comic/:num", async (req, res, next) => {
   let comicNum = Number(req.params.num);
-  let comic: types.DBComic | undefined = await db("comics").where({ num: comicNum }).first();
+  let comic: types.DBComic | undefined = await db("comics")
+    .where({ num: comicNum })
+    .first();
   let comments = await db("comments").where({ num: comicNum });
   if (!comic) {
-    next({ message: "We couldn't find that comic" });
+    res
+      .status(404)
+      .json({ message: "404 No Comic found with that comic number :/" });
   } else {
     res.status(200).json({ ...comic, comments: comments || [] });
   }
