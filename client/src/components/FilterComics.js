@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { searchComics, fetchComics } from "../actions";
+import { excludeWords } from "./Charts/chartCalcs";
 
 const FilterComics = ({search, setSearch}) => {
   const { showedComics } = useSelector((state) => state);
@@ -14,7 +15,7 @@ const FilterComics = ({search, setSearch}) => {
   };
 
   useEffect(() => {
-    if (search.length > 2) {
+    if (search.length > 2 && !excludeWords.includes(search)) {
       dispatch(searchComics(search));
       setSearched(true);
       if (showedComics.length === 0) {

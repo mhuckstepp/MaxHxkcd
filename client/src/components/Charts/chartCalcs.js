@@ -10,7 +10,7 @@ export const countByYear = (comics) => {
   return counts;
 };
 
-let excludeWords = ["the", "and", "for", "not", "you", "i'm", "part"];
+export const excludeWords = ["the", "and", "for", "not", "you", "i'm", "part"];
 export const countByWords = (comics) => {
   const titleWords = {};
   comics.forEach((comic) => {
